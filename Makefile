@@ -6,15 +6,21 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 13:44:31 by ghanquer          #+#    #+#              #
-#    Updated: 2021/12/15 13:56:29 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/01/12 09:49:42 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRC = push_swap.c instr_swap.c instr_push.c instr_rot.c intr_revrot.c
+INC_DIR =		inc
+OBJ_DIR = 		obj
+SRC_DIR	= 		src
 
-OBJ = $(SRC:.c=.o)
+SRC =			$(SRC_FT:%=$(SRC_DIR)/%.c)
+
+OBJ =			$(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+
+OBJ_DIRS =		$(OBJ_DIR)
 
 CC = clang
 
@@ -25,15 +31,62 @@ CFLAGS = -Wall -Wextra -Werror
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-all: $(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
+#HOW TO LIST .c 
+#	ls -l | awk '{print $9}' | grep -E ".c$"| sed "s/\.c/ \\\/g" | sed '$s/\\$//g'
+
+SRC_FT = ft_atoi \
+			instr_push \
+			instr_revrot \
+			instr_rot \
+			instr_swap \
+			push_swap
+
+all: $(NAME)
+
+$(OBJ_DIRS):
+	@mkdir -p $@
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@$(CC) -c $< -o $@
+
+$(NAME): $(OBJ_DIRS) $(SRC)
+	@$(MAKE) -j -s $(OBJ)
+	@$(CC) $(OBJ) -o $@
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+define print_aligned_coffee
+    @t=$(NAME); \
+	l=$${#t};\
+	i=$$((8 - l / 2));\
+	echo "             \0033[1;32m\033[3C\033[$${i}CAnd Your program \"$(NAME)\" "
+endef
+
+coffee: all clean
+	@echo ""
+	@echo "                                {"
+	@echo "                             {   }"
+	@echo "                              }\0033[1;34m_\0033[1;37m{ \0033[1;34m__\0033[1;37m{"
+	@echo "                           \0033[1;34m.-\0033[1;37m{   }   }\0033[1;34m-."
+	@echo "                          \0033[1;34m(   \0033[1;37m}     {   \0033[1;34m)"
+	@echo "                          \0033[1;34m| -.._____..- |"
+	@echo "                          |             ;--."
+	@echo "                          |            (__  \ "
+	@echo "                          |             | )  )"
+	@echo "                          |   \0033[1;96mCOFFEE \0033[1;34m   |/  / "
+	@echo "                          |             /  / "
+	@echo "                          |            (  / "
+	@echo "                          \             | "
+	@echo "                            -.._____..- "
+	@echo ""
+	@echo ""
+	@echo "\0033[1;32m\033[3C                    Take Your Coffee"
+	$(call print_aligned_coffee)
+
+.PHONY: all clean fclean re coffee
