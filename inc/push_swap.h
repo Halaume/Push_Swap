@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/12 10:45:29 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/12 17:38:42 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ typedef struct s_env {
 
 void	putstr(char *s);
 int		ft_isdigit(int c);
-int		ft_atoi(const char *str);
+int		ft_atoi(char *str);
 void	ft_lstadd_front(t_pile **alst, t_pile *new);
 void	ft_lstadd_back(t_pile **alst, t_pile *new);
 t_pile	*ft_lstnew(int content);
 
-int		sa(t_env g);
+int		sa(t_env *g);
 int		sb(t_env *g);
 int		ss(t_env *g);
 int		pa(t_env *g);
