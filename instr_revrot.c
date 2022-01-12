@@ -6,20 +6,20 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:57:52 by ghanquer          #+#    #+#             */
-/*   Updated: 2021/12/15 13:59:30 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/12 10:26:21 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "inc/push_swap.h"
 
-int rra(t_env *g)
+int	rra(t_env *g)
 {
-	if (!g)
-		return (-1);
 	t_pile	*ltof;
 	t_pile	*tmp;
-	
-	tmp = &g->pile_a;
+
+	if (!g)
+		return (-1);
+	tmp = g->pile_a;
 	while (tmp->next)
 		tmp = tmp->next;
 	ltof = tmp;
@@ -32,12 +32,12 @@ int rra(t_env *g)
 
 int	rrb(t_env *g)
 {
+	t_pile	*ltof;
+	t_pile	*tmp;
+
 	if (!g)
 		return (-1);
-	t_pile* ltof;
-	t_pile* tmp;
-
-	tmp = &g->pile_b;
+	tmp = g->pile_b;
 	while (tmp->next)
 		tmp = tmp->next;
 	ltof = tmp;

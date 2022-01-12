@@ -6,22 +6,22 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:59:11 by ghanquer          #+#    #+#             */
-/*   Updated: 2021/12/15 13:59:31 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/12 10:27:54 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "inc/push_swap.h"
 
-int ra(t_env *g)
+int	ra(t_env *g)
 {
-	if (!g)
-		return (-1);
 	t_pile	*ftol;
 	t_pile	*tmp;
 
+	if (!g)
+		return (-1);
 	ftol = g->pile_a;
 	g->pile_a = g->pile_a->next;
-	tmp = &g->pile_a;
+	tmp = g->pile_a;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = ftol;
@@ -29,25 +29,24 @@ int ra(t_env *g)
 	return (0);
 }
 
-int rb(t_env *g)
+int	rb(t_env *g)
 {
-	if (!g)
-		return (-1);
 	t_pile	*ftol;
 	t_pile	*tmp;
 
+	if (!g)
+		return (-1);
 	ftol = g->pile_b;
 	g->pile_b = g->pile_b->next;
-	tmp = &g->pile_b;
+	tmp = g->pile_b;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = ftol;
 	putstr("rb\n");
-
 	return (0);
 }
 
-int rr(t_env *g)
+int	rr(t_env *g)
 {
 	ra(g);
 	rb(g);

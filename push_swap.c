@@ -6,13 +6,13 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:59:44 by ghanquer          #+#    #+#             */
-/*   Updated: 2021/12/15 14:00:04 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/12 10:33:10 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "inc/push_swap.h"
 
-void	putstr(char* s)
+void	putstr(char *s)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ void	putstr(char* s)
 	}
 }
 
-int push_swap()
+int	push_swap()
 {
-
+	return (0);
 }

@@ -6,18 +6,18 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:57:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2021/12/15 13:59:31 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/12 10:31:44 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "inc/push_swap.h"
 
-int sa(t_env g)
+int	sa(t_env g)
 {
-	if (!g.pile_a)
-		return (-1);
 	t_pile	*tmp;
 
+	if (!g.pile_a)
+		return (-1);
 	tmp = g.pile_a;
 	g.pile_a = g.pile_a->next;
 	g.pile_a->next = tmp;
@@ -27,8 +27,6 @@ int sa(t_env g)
 
 int	sb(t_env *g)
 {
-	if (g->pile_b->nb == NULL)
-		return (-1);
 	t_pile	*tmp;
 
 	tmp = g->pile_b;

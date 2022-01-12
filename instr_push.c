@@ -6,11 +6,11 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:58:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2021/12/15 14:01:21 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/12 10:24:17 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "inc/push_swap.h"
 
 int	pa(t_env *g)
 {
@@ -23,7 +23,7 @@ int	pa(t_env *g)
 	return (0);
 }
 
-int pb(t_env *g)
+int	pb(t_env *g)
 {
 	if (!(g->pile_b))
 		return (-1);

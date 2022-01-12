@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 13:44:31 by ghanquer          #+#    #+#              #
-#    Updated: 2022/01/12 09:49:42 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/01/12 10:48:39 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 INC_DIR =		inc
 OBJ_DIR = 		obj
-SRC_DIR	= 		src
+SRC_DIR	= 		.
 
 SRC =			$(SRC_FT:%=$(SRC_DIR)/%.c)
 
@@ -34,12 +34,13 @@ CFLAGS = -Wall -Wextra -Werror
 #HOW TO LIST .c 
 #	ls -l | awk '{print $9}' | grep -E ".c$"| sed "s/\.c/ \\\/g" | sed '$s/\\$//g'
 
-SRC_FT = ft_atoi \
-			instr_push \
-			instr_revrot \
-			instr_rot \
-			instr_swap \
-			push_swap
+SRC_FT = instr_push\
+		instr_revrot\
+		instr_rot\
+		instr_swap\
+		lstfunc\
+		main\
+		push_swap
 
 all: $(NAME)
 
