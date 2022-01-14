@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:59:11 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/12 16:41:04 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/14 12:28:40 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ra(t_env *g)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = ftol;
+	ftol->next = NULL;
 	putstr("ra\n");
 	return (0);
 }
@@ -42,6 +43,7 @@ int	rb(t_env *g)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = ftol;
+	ftol->next = NULL;
 	putstr("rb\n");
 	return (0);
 }

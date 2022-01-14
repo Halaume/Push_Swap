@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 13:44:31 by ghanquer          #+#    #+#              #
-#    Updated: 2022/01/12 10:48:39 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/01/13 15:49:29 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRC_FT = instr_push\
 
 all: $(NAME)
 
-$(OBJ_DIRS):
+$(OBJ_DIRS): inc/push_swap.h
 	@mkdir -p $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -90,4 +90,5 @@ coffee: all clean
 	@echo "\0033[1;32m\033[3C                    Take Your Coffee"
 	$(call print_aligned_coffee)
 
+.SECONDARY: $(OBJ_DIR)
 .PHONY: all clean fclean re coffee
