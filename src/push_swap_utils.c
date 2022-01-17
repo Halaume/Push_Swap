@@ -1,62 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstfunc.c                                          :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/14 12:28:38 by ghanquer         ###   ########.fr       */
+/*   Created: 2022/01/17 11:32:07 by ghanquer          #+#    #+#             */
+/*   Updated: 2022/01/17 16:55:52 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/push_swap.h"
+#include "../inc/push_swap.h"
 
-t_pile	*ft_lstnew(int content)
+long long	ft_atoi(char *str)
 {
-	t_pile	*tmp;
-
-	tmp = malloc(sizeof(t_pile));
-	if (tmp)
-	{
-		tmp->nb = content;
-		tmp->next = NULL;
-	}
-	return (tmp);
-}
-
-void	ft_lstadd_back(t_pile **alst, t_pile *new)
-{
-	t_pile	*tmp;
-
-	if (alst && new)
-	{
-		if (*alst == NULL)
-			*alst = new;
-		else
-		{
-			tmp = *alst;
-			while (tmp->next)
-				tmp = tmp->next;
-			tmp->next = new;
-		}
-	}
-}
-
-void	ft_lstadd_front(t_pile **alst, t_pile *new)
-{
-	if (alst && new)
-	{
-		new->next = *alst;
-		*alst = new;
-	}
-}
-
-int	ft_atoi(char *str)
-{
-	int	i;
-	int	res;
-	int	neg;
+	int			i;
+	long long	res;
+	int			neg;
 
 	neg = 1;
 	i = 0;
@@ -73,15 +33,24 @@ int	ft_atoi(char *str)
 	}
 	while (str[i] && (str[i] <= '9' && str[i] >= '0'))
 	{
+		if (res > 2147483647 || res < -2147483648)
+			return (res);
 		res = res * 10 + str[i] - '0';
 		i++;
 	}
 	return (res * neg);
 }
 
-int	ft_isdigit(int c)
+int	ft_isdigit(char *c)
 {
-	if (c > 47 && c < 58)
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (c[i])
+	{
+		if (!(c[i] > 47 && c[i] < 58))
+			return (0);
+		i++;
+	}
+	return (1);
 }

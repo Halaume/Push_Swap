@@ -1,47 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instr_swap.c                                       :+:      :+:    :+:   */
+/*   instr_revrot.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 13:57:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/12 17:38:44 by ghanquer         ###   ########.fr       */
+/*   Created: 2021/12/15 13:57:52 by ghanquer          #+#    #+#             */
+/*   Updated: 2022/01/17 11:42:25 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/push_swap.h"
+#include "../inc/push_swap.h"
 
-int	sa(t_env *g)
+int	rra(t_env *g)
 {
+	t_pile	*ltof;
 	t_pile	*tmp;
 
-	if (!g->pile_a)
+	if (!g)
 		return (-1);
 	tmp = g->pile_a;
-	g->pile_a = g->pile_a->next;
-	tmp->next = g->pile_a->next;
-	g->pile_a->next = tmp;
-	putstr("sa\n");
+	while (tmp->next->next)
+		tmp = tmp->next;
+	ltof = tmp->next;
+	tmp->next = NULL;
+	ltof->next = g->pile_a;
+	g->pile_a = ltof;
+	putstr("rra\n");
 	return (0);
 }
 
-int	sb(t_env *g)
+int	rrb(t_env *g)
 {
+	t_pile	*ltof;
 	t_pile	*tmp;
 
+	if (!g)
+		return (-1);
 	tmp = g->pile_b;
-	g->pile_b = g->pile_b->next;
-	tmp->next = g->pile_b->next;
-	g->pile_b->next = tmp;
-	putstr("sb\n");
+	while (tmp->next->next)
+		tmp = tmp->next;
+	ltof = tmp->next;
+	tmp->next = NULL;
+	ltof->next = g->pile_b;
+	g->pile_b = ltof;
+	putstr("rrb\n");
 	return (0);
 }
 
-int	ss(t_env *g)
+int	rrr(t_env *g)
 {
-	sa(g);
-	sb(g);
-	putstr("ss\n");
+	rra(g);
+	rrb(g);
+	putstr("rrr\n");
 	return (0);
 }

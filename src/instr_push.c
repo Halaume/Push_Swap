@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   instr_push.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 13:59:44 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/12 10:33:10 by ghanquer         ###   ########.fr       */
+/*   Created: 2021/12/15 13:58:38 by ghanquer          #+#    #+#             */
+/*   Updated: 2022/01/17 16:55:47 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/push_swap.h"
+#include "../inc/push_swap.h"
 
-void	putstr(char *s)
+int	pa(t_env *g)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
+	if (!(g->pile_a))
+		return (-1);
+	ft_lstadd_back(&g->pile_b, ft_lstnew(g->pile_a->nb));
+	g->pile_a = ft_lst_delfirst(g->pile_a);
+	putstr("pa\n");
+	return (0);
 }
 
-int	push_swap()
+int	pb(t_env *g)
 {
+	if (!(g->pile_b))
+		return (-1);
+	ft_lstadd_back(&g->pile_a, ft_lstnew(g->pile_b->nb));
+	g->pile_b = ft_lst_delfirst(g->pile_b);
+	putstr("pb\n");
 	return (0);
 }

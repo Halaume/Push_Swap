@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 13:44:31 by ghanquer          #+#    #+#              #
-#    Updated: 2022/01/13 15:49:29 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/01/17 16:55:46 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 INC_DIR =		inc
 OBJ_DIR = 		obj
-SRC_DIR	= 		.
+SRC_DIR	= 		src
 
 SRC =			$(SRC_FT:%=$(SRC_DIR)/%.c)
 
@@ -40,19 +40,21 @@ SRC_FT = instr_push\
 		instr_swap\
 		lstfunc\
 		main\
+		push_swap_utils\
+		lis\
 		push_swap
 
 all: $(NAME)
 
 $(OBJ_DIRS): inc/push_swap.h
-	@mkdir -p $@
+	mkdir -p $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(CC) -c $< -o $@
+	$(CC) -c $< -o $@
 
 $(NAME): $(OBJ_DIRS) $(SRC)
-	@$(MAKE) -j -s $(OBJ)
-	@$(CC) $(OBJ) -o $@
+	$(MAKE) -j -s $(OBJ)
+	$(CC) $(OBJ) -o $@
 
 clean:
 	$(RM) $(OBJ_DIR)
@@ -90,5 +92,5 @@ coffee: all clean
 	@echo "\0033[1;32m\033[3C                    Take Your Coffee"
 	$(call print_aligned_coffee)
 
-.SECONDARY: $(OBJ_DIR)
+.SECONDARY: $(OBJ)
 .PHONY: all clean fclean re coffee

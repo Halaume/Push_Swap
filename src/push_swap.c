@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instr_push.c                                       :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 13:58:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/14 12:28:42 by ghanquer         ###   ########.fr       */
+/*   Created: 2021/12/15 13:59:44 by ghanquer          #+#    #+#             */
+/*   Updated: 2022/01/17 11:42:22 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/push_swap.h"
+#include "../inc/push_swap.h"
 
-int	pa(t_env *g)
+void	putstr(char *s)
 {
-	if (!(g->pile_a))
-		return (-1);
-	g->pile_b->next = g->pile_b;
-	g->pile_b = g->pile_a;
-	g->pile_a = g->pile_a->next;
-	putstr("pa\n");
-	return (0);
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
 }
 
-int	pb(t_env *g)
+int	push_swap()
 {
-	if (!(g->pile_b))
-		return (-1);
-	g->pile_a->next = g->pile_a;
-	g->pile_a = g->pile_b;
-	g->pile_b = g->pile_b->next;
-	putstr("pb\n");
 	return (0);
 }
