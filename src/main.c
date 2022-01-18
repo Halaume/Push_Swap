@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/17 16:55:50 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:25:24 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,41 @@ int	checkarg(int argc, char **argv)
 	return (1);
 }
 
-/*int	main(int argc, char **argv)
-{	
+void	check_lis(t_env *g, int argc, char **argv)
+{
+	char	**lis_str;
+	t_pile	*tmp;
+	int		i;
+
+	tmp = NULL;
+	i = -1;
+	lis_str = lis(argc, argv);
+	while (lis_str[++i])
+	{
+		tmp = g->pile_a;
+		while (tmp->next)
+		{
+			if (tmp->nb == (int)ft_atoi(lis_str[i]))
+				tmp->is_in_lis = 1;
+			tmp = tmp->next;
+		}
+	}
+	i = 0;
+	while(i < argc)
+	{
+		i++;
+		if (g->pile_a->is_in_lis == 0)
+			pa(g);
+		else if (i < argc)
+			ra(g);
+	}
+	tmp = g->pile_a;
+	while (tmp->next)
+		tmp = tmp->next;
+}
+
+int	main(int argc, char **argv)
+{
 	int		i;
 	int		nb;
 	t_env	g;
@@ -94,15 +127,11 @@ int	checkarg(int argc, char **argv)
 					return (print_err());
 			nb = (int)ft_atoi(argv[i]);
 			i++;
-			ft_lstadd_back(&g.pile_a, ft_lstnew(nb));
+			ft_lstadd_back(&g.pile_a, ft_lstnew(nb, 0));
 		}
 		i++;
 	}
-//	rra(&g);
-//	ra(&g);
-//	pa(&g);
-//	pb(&g);
-//	sa(&g);
+	check_lis(&g, argc, argv);
 	print_pile(g);
 	return (0);
-}*/
+}

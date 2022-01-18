@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:05:31 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/17 16:55:45 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:25:29 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ int	ft_strlen(char	*str)
 	return (i);
 }
 
-char	**ft_calloc(size_t nmemb, size_t size, char **argv)
+char	**ft_calloc_base(size_t nmemb, size_t size, char **argv)
 {
 	char	**dest;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
-	j = -1;
+	j = 0;
 	i = -1;
-	dest = malloc(sizeof(char **) * nmemb);
+	dest = malloc(sizeof(char *) * nmemb);
 	if (nmemb * size > 2147483647)
 		return (NULL);
 	while (++j < nmemb)
-		dest[j] = malloc(sizeof(char) * ft_strlen(argv[j]) + 1);
+		dest[j - 1] = malloc(sizeof(char) * ft_strlen(argv[j]) + 1);
 	if (!dest)
 		return (NULL);
 	while (++i < nmemb)
@@ -42,6 +42,25 @@ char	**ft_calloc(size_t nmemb, size_t size, char **argv)
 	return (dest);
 }
 
+char	**ft_calloc(size_t nmemb, size_t size, char **argv)
+{
+	char	**dest;
+	size_t	i;
+	size_t	j;
+
+	j = -1;
+	i = -1;
+	dest = malloc(sizeof(char *) * (nmemb + 1));
+	if (nmemb * size > 2147483647)
+		return (NULL);
+	while (++j < nmemb)
+		dest[j] = malloc(sizeof(char) * ft_strlen(argv[j]) + 1);
+	if (!dest)
+		return (NULL);
+	while (++i <= nmemb)
+		dest[i] = NULL;
+	return (dest);
+}
 
 char	**lis(int argc, char **argv)
 {
@@ -52,22 +71,21 @@ char	**lis(int argc, char **argv)
 	int		i;
 	int		j;
 	int		lst_cnt;
+	int		k;
 
-
-	int k = 0;
-
-
+	k = 0;
 	lst_cnt = 0;
 	i = 0;
 	highestCount = 0;
-	list = ft_calloc(argc, sizeof(char *), argv);
+	list = ft_calloc_base(argc, sizeof(char *), argv);
 	if (!list)
 		return (NULL);
 	longestList = NULL;
 	while (i < argc)
 	{
 		currentMax = -2147483648;
-		j = i;
+		j = i + 1;
+		lst_cnt = 0;
 		while (j < argc)
 		{
 			if((int)ft_atoi(argv[j]) > currentMax)
@@ -87,31 +105,28 @@ char	**lis(int argc, char **argv)
 			longestList = ft_calloc(lst_cnt, sizeof(char *), list);
 			if (!longestList)
 				return (NULL);
-			while (list[k])
+			while (k < lst_cnt)
 			{
 				longestList[k] = list[k];
 				k++;
 			}
 		}
 	}
-	if (highestCount == argc - 1)
-	{
-		printf("LAAAAAAAAAAAAA\n");
-		return (NULL);
-	}
-	printf("LAAAAAAAAAAAAAMAAAAAAA\n");
 	free(list);
+	if (k == argc - 1)
+		return (NULL);
 	return (longestList);
-
 }
 
-int	main(int argc, char **argv)
+/*int	main(int argc, char **argv)
 {
 	char **str = lis(argc,argv);
-	int i = 0;
-	while (str[i])
+	int i = -1;
+	if (str)
 	{
-		printf("La liste : %s\n", str[i]);
-		i++;
+		while (str[++i])
+		{
+			printf("La liste : %s\n", str[i]);
+		}
 	}
-}
+}*/
