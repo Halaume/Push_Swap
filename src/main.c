@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/18 17:25:24 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/19 18:02:23 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	check_lis(t_env *g, int argc, char **argv)
 	{
 		i++;
 		if (g->pile_a->is_in_lis == 0)
-			pa(g);
+			pb(g);
 		else if (i < argc)
 			ra(g);
 	}

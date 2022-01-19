@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:05:31 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/18 17:25:29 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/19 18:02:22 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,36 @@ char	**ft_calloc(size_t nmemb, size_t size, char **argv)
 	return (dest);
 }
 
+int	min(int argc, char **argv, int min)
+{
+	int	i;
+
+	i = -1;
+	while (++i < argc)
+	{
+		if ((int)ft_atoi(argv[i]) < min)
+			min = (int)ft_atoi(argv[i]);
+	}
+	return (min);
+}
+
+/*int	is_min(int argc, char **argv, int min)
+{
+	int	i;
+
+	i = 0;
+	while((int)ft_atoi(argv[i]) != min)
+		i++;
+	while (i < argc)
+	{
+		if ((int)ft_atoi(argv[i]) < min)
+			min = (int)ft_atoi(argv[i]);
+		i++;
+	}
+	printf("%d\n\n",min);
+	return (min);
+}*/
+
 char	**lis(int argc, char **argv)
 {
 	char	**list;
@@ -83,16 +113,25 @@ char	**lis(int argc, char **argv)
 	longestList = NULL;
 	while (i < argc)
 	{
-		currentMax = -2147483648;
+		currentMax = min(argc, argv, 2147483647);
 		j = i + 1;
 		lst_cnt = 0;
 		while (j < argc)
 		{
-			if((int)ft_atoi(argv[j]) > currentMax)
+			if(ft_atoi(argv[j]) > currentMax)
 			{
-				list[lst_cnt] = argv[j];
-				lst_cnt++;
-				currentMax = (int)ft_atoi(argv[j]);
+				if (j + 1 != argc && ft_atoi(argv[j + 1]) > currentMax && ft_atoi(argv[j]) > ft_atoi(argv[j + 1]))
+				{
+					list[lst_cnt] = argv[j + 1];
+					lst_cnt++;
+					currentMax = (int)ft_atoi(argv[j + 1]);
+				}
+				else
+				{
+					list[lst_cnt] = argv[j];
+					lst_cnt++;
+					currentMax = (int)ft_atoi(argv[j]);
+				}
 			}
 			j++;
 		}
