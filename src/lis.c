@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:05:31 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/19 18:02:22 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:58:12 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ char	**ft_calloc_base(size_t nmemb, size_t size, char **argv)
 	j = 0;
 	i = -1;
 	dest = malloc(sizeof(char *) * nmemb);
+	if (!dest)
+		return (NULL);
 	if (nmemb * size > 2147483647)
 		return (NULL);
 	while (++j < nmemb)
 		dest[j - 1] = malloc(sizeof(char) * ft_strlen(argv[j]) + 1);
-	if (!dest)
-		return (NULL);
 	while (++i < nmemb)
 		dest[i] = NULL;
 	return (dest);
@@ -95,9 +95,9 @@ int	min(int argc, char **argv, int min)
 char	**lis(int argc, char **argv)
 {
 	char	**list;
-	char	**longestList;
-	int		currentMax;
-	int		highestCount;
+	char	**longestlist;
+	int		currentmax;
+	int		highestcount;
 	int		i;
 	int		j;
 	int		lst_cnt;
@@ -106,47 +106,44 @@ char	**lis(int argc, char **argv)
 	k = 0;
 	lst_cnt = 0;
 	i = 0;
-	highestCount = 0;
+	highestcount = 0;
 	list = ft_calloc_base(argc, sizeof(char *), argv);
 	if (!list)
 		return (NULL);
-	longestList = NULL;
+	longestlist = NULL;
 	while (i < argc)
 	{
-		currentMax = min(argc, argv, 2147483647);
+		currentmax = -2147483648;
 		j = i + 1;
 		lst_cnt = 0;
 		while (j < argc)
 		{
-			if(ft_atoi(argv[j]) > currentMax)
+			if(ft_atoi(argv[j]) > currentmax)
 			{
-				if (j + 1 != argc && ft_atoi(argv[j + 1]) > currentMax && ft_atoi(argv[j]) > ft_atoi(argv[j + 1]))
+				if (j + 1 != argc && ft_atoi(argv[j + 1]) > currentmax && ft_atoi(argv[j]) > ft_atoi(argv[j + 1]))
 				{
-					list[lst_cnt] = argv[j + 1];
-					lst_cnt++;
-					currentMax = (int)ft_atoi(argv[j + 1]);
 				}
 				else
 				{
 					list[lst_cnt] = argv[j];
 					lst_cnt++;
-					currentMax = (int)ft_atoi(argv[j]);
+					currentmax = (int)ft_atoi(argv[j]);
 				}
 			}
 			j++;
 		}
 		i++;
-		if (highestCount < lst_cnt)
+		if (highestcount < lst_cnt)
 		{
-			highestCount = lst_cnt;
-			if (longestList != NULL)
-				free(longestList);
-			longestList = ft_calloc(lst_cnt, sizeof(char *), list);
-			if (!longestList)
+			highestcount = lst_cnt;
+			if (longestlist != NULL)
+				free(longestlist);
+			longestlist = ft_calloc(lst_cnt, sizeof(char *), list);
+			if (!longestlist)
 				return (NULL);
 			while (k < lst_cnt)
 			{
-				longestList[k] = list[k];
+				longestlist[k] = list[k];
 				k++;
 			}
 		}
@@ -154,7 +151,7 @@ char	**lis(int argc, char **argv)
 	free(list);
 	if (k == argc - 1)
 		return (NULL);
-	return (longestList);
+	return (longestlist);
 }
 
 /*int	main(int argc, char **argv)

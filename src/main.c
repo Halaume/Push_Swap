@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/19 18:02:23 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:58:17 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ int	print_err()
 	return (-1);
 }
 
+int	is_sort(int argc, char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (i < argc)
+	{
+		if (argv[i + 1] && ft_atoi(argv[i]) > ft_atoi(argv[i + 1]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	checkarg(int argc, char **argv)
 {
 	int		i;
@@ -78,23 +92,26 @@ void	check_lis(t_env *g, int argc, char **argv)
 	tmp = NULL;
 	i = -1;
 	lis_str = lis(argc, argv);
-	while (lis_str[++i])
+	if (lis_str)
 	{
-		tmp = g->pile_a;
-		while (tmp->next)
+		while (lis_str[++i])
 		{
-			if (tmp->nb == (int)ft_atoi(lis_str[i]))
-				tmp->is_in_lis = 1;
-			tmp = tmp->next;
+			tmp = g->pile_a;
+			while (tmp)
+			{
+				if (tmp->nb == (int)ft_atoi(lis_str[i]))
+					tmp->is_in_lis = 1;
+				tmp = tmp->next;
+			}
 		}
 	}
 	i = 0;
 	while(i < argc)
 	{
 		i++;
-		if (g->pile_a->is_in_lis == 0)
+		if (g->pile_a->next && g->pile_a->is_in_lis == 0)
 			pb(g);
-		else if (i < argc)
+		else if (g->pile_a && i < argc)
 			ra(g);
 	}
 	tmp = g->pile_a;
@@ -112,6 +129,8 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!checkarg(argc, argv))
 		return (print_err());
+	if (is_sort(argc, argv) == 0)
+		return (0);
 	i = 1;
 	g.pile_a = NULL;
 	g.pile_b = NULL;
@@ -124,12 +143,17 @@ int	main(int argc, char **argv)
 				return (print_err());
 			}
 			if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648)
-					return (print_err());
+				return (print_err());
 			nb = (int)ft_atoi(argv[i]);
 			i++;
 			ft_lstadd_back(&g.pile_a, ft_lstnew(nb, 0));
 		}
 		i++;
+	}
+	if (argc == 3)
+	{
+		sa(&g);
+		return (0);
 	}
 	check_lis(&g, argc, argv);
 	print_pile(g);
