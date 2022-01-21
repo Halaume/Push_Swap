@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/20 16:58:13 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:27:05 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,34 +72,24 @@ int	check_pile_b(t_pile *pile_b, int nb)
 int	check_pile_a(t_pile *pile_a, int nb)
 {
 	int		check;
-	int		gobt1;
-	int		gobt2;
 	t_pile	*tmp;
+	int		i;
 
 	check = 0;
-	gobt1 = 2147483647;
-	gobt2 = -2147483648;
+	i = 0;
 	tmp = pile_a;
 	while (tmp->next)
 	{
-		if (gobt1 > tmp->nb && tmp->nb < nb)
-			gobt1 = tmp->nb;
-		if (gobt2 < tmp->nb && tmp->nb > nb)
-			gobt1 = tmp->nb;
+		if (tmp->nb < nb && tmp->next && tmp->next->nb > nb)
+			check = i;
 		tmp = tmp->next;
+		i++;
 	}
+	if (pile_a->nb < nb && tmp->nb < nb)
+		check = -1;
+	else if (pile_a->nb > nb && tmp->nb > nb)
+		check = 0;
 	tmp = pile_a;
-	while (tmp->nb != gobt1)
-	{
-		check++;
-		tmp = tmp->next;
-	}
-	if (check == pile_len(pile_a) && nb != tmp->nb)
-		return (pile_len(pile_a) + 1);
-	if (check <= pile_len(pile_a) / 2)
-		return (check);
-	else
-		check = check - pile_len(pile_a);
 	return (check);
 }
 

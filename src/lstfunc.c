@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/18 17:25:24 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:15:15 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ t_pile	*ft_lstnew(int content, int is_lis)
 	t_pile	*tmp;
 
 	tmp = malloc(sizeof(t_pile));
-	if (tmp)
-	{
-		tmp->nb = content;
-		tmp->is_in_lis = is_lis;
-		tmp->next = NULL;
-	}
+	if (!tmp)
+		return (NULL);
+	tmp->nb = content;
+	tmp->is_in_lis = is_lis;
+	tmp->next = NULL;
 	return (tmp);
 }
 
@@ -57,7 +56,9 @@ t_pile	*ft_lst_delfirst(t_pile *pile)
 {
 	t_pile	*tmp;
 
-	tmp = pile->next;;
+	tmp = NULL;
+	if (pile->next)
+		tmp = pile->next;;
 	free(pile);
 	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:05:31 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/20 16:58:12 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:19:25 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,22 @@ char	**ft_calloc(size_t nmemb, size_t size, char **argv)
 	j = -1;
 	i = -1;
 	dest = malloc(sizeof(char *) * (nmemb + 1));
+	if (!dest)
+		return (NULL);
 	if (nmemb * size > 2147483647)
 		return (NULL);
 	while (++j < nmemb)
+	{
 		dest[j] = malloc(sizeof(char) * ft_strlen(argv[j]) + 1);
-	if (!dest)
-		return (NULL);
+		if (!dest[j])
+		{
+//			j = -1;
+//			while (dest[++j])
+//				free(dest[j]);		PAS SUR
+				free(dest);
+			return (NULL);
+		}
+	}
 	while (++i <= nmemb)
 		dest[i] = NULL;
 	return (dest);
@@ -140,7 +150,10 @@ char	**lis(int argc, char **argv)
 				free(longestlist);
 			longestlist = ft_calloc(lst_cnt, sizeof(char *), list);
 			if (!longestlist)
+			{
+				free(list);
 				return (NULL);
+			}
 			while (k < lst_cnt)
 			{
 				longestlist[k] = list[k];
@@ -150,7 +163,10 @@ char	**lis(int argc, char **argv)
 	}
 	free(list);
 	if (k == argc - 1)
+	{
+		free(longestlist);
 		return (NULL);
+	}
 	return (longestlist);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/20 12:06:20 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:26:16 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,96 @@ typedef struct s_env {
 	t_pile	*pile_b;
 }	t_env;
 
+
+int				*check_pos(t_env *g, int nb);
+void			putstr(char *s);
+int				ft_isdigit(char *c);
+long long		ft_atoi(char *str);
+void			ft_lstadd_front(t_pile **alst, t_pile *new);
+void			ft_lstadd_back(t_pile **alst, t_pile *new);
+t_pile			*ft_lstnew(int content, int is_lis);
+t_pile			*ft_lst_delfirst(t_pile *pile);
+char			**lis(int argc, char **argv);
+
+int				sa(t_env *g);
+int				sb(t_env *g);
+int				ss(t_env *g);
+int				pa(t_env *g);
+int				pb(t_env *g);
+int				ra(t_env *g);
+int				ra(t_env *g);
+int				ra(t_env *g);
+int				rra(t_env *g);
+int				rrb(t_env *g);
+int				rrr(t_env *g);
+
+#endif
+void			putstr(char *s);
+int				ft_isdigit(char *c);
+long long		ft_atoi(char *str);
+void			ft_lstadd_front(t_pile **alst, t_pile *new);
+void			ft_lstadd_back(t_pile **alst, t_pile *new);
+t_pile			*ft_lstnew(int content, int is_lis);
+t_pile			*ft_lst_delfirst(t_pile *pile);
+char			**lis(int argc, char **argv);
+
+int				sa(t_env *g);
+int				sb(t_env *g);
+int				ss(t_env *g);
+int				pa(t_env *g);
+int				pb(t_env *g);
+int				ra(t_env *g);
+int				ra(t_env *g);
+int				ra(t_env *g);
+int				rra(t_env *g);
+int				rrb(t_env *g);
+int				rrr(t_env *g);
+
+#endif
+void			putstr(char *s);
+int				ft_isdigit(char *c);
+long long		ft_atoi(char *str);
+void			ft_lstadd_front(t_pile **alst, t_pile *new);
+void			ft_lstadd_back(t_pile **alst, t_pile *new);
+t_pile			*ft_lstnew(int content, int is_lis);
+t_pile			*ft_lst_delfirst(t_pile *pile);
+char			**lis(int argc, char **argv);
+
+int				sa(t_env *g);
+int				sb(t_env *g);
+int				ss(t_env *g);
+int				pa(t_env *g);
+int				pb(t_env *g);
+int				ra(t_env *g);
+int				ra(t_env *g);
+int				ra(t_env *g);
+int				rra(t_env *g);
+int				rrb(t_env *g);
+int				rrr(t_env *g);
+
+#endif
+void			putstr(char *s);
+int				ft_isdigit(char *c);
+long long		ft_atoi(char *str);
+void			ft_lstadd_front(t_pile **alst, t_pile *new);
+void			ft_lstadd_back(t_pile **alst, t_pile *new);
+t_pile			*ft_lstnew(int content, int is_lis);
+t_pile			*ft_lst_delfirst(t_pile *pile);
+char			**lis(int argc, char **argv);
+
+int				sa(t_env *g);
+int				sb(t_env *g);
+int				ss(t_env *g);
+int				pa(t_env *g);
+int				pb(t_env *g);
+int				ra(t_env *g);
+int				ra(t_env *g);
+int				ra(t_env *g);
+int				rra(t_env *g);
+int				rrb(t_env *g);
+int				rrr(t_env *g);
+
+#endif
 void			putstr(char *s);
 int				ft_isdigit(char *c);
 long long		ft_atoi(char *str);
