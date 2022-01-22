@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/22 13:29:27 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/22 16:16:17 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct s_pile {
 	int				nb;
 	int				is_in_lis;
+	int				min;
 	struct s_pile	*next;
 }	t_pile;
 
@@ -35,7 +36,7 @@ int				ft_isdigit(char *c);
 long long		ft_atoi(char *str);
 void			ft_lstadd_front(t_pile **alst, t_pile *new);
 void			ft_lstadd_back(t_pile **alst, t_pile *new);
-t_pile			*ft_lstnew(int content, int is_lis);
+t_pile			*ft_lstnew(int content, int is_lis, int min);
 t_pile			*ft_lst_delfirst(t_pile *pile);
 char			**lis(int argc, char **argv);
 int				sort(t_env *g);

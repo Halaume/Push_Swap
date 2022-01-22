@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/22 13:29:26 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/22 16:16:15 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,12 @@ void	check_lis(t_env *g, int argc, char **argv)
 	char	**lis_str;
 	t_pile	*tmp;
 	int		i;
+	int		currmin;
 
 	tmp = NULL;
 	i = -1;
 	lis_str = lis(argc, argv);
+	currmin = 2147483647;
 	if (lis_str)
 	{
 		while (lis_str[++i])
@@ -101,10 +103,16 @@ void	check_lis(t_env *g, int argc, char **argv)
 			{
 				if (tmp->nb == (int)ft_atoi(lis_str[i]))
 					tmp->is_in_lis = 1;
+				if (tmp->nb < currmin && tmp->is_in_lis == 1)
+					currmin = tmp->nb;
 				tmp = tmp->next;
 			}
 		}
 	}
+	tmp = g->pile_a;
+	while (tmp)
+		if (tmp->nb == currmin)
+			tmp->min = 1;
 	i = 0;
 	while(i < argc)
 	{
@@ -143,7 +151,7 @@ int	main(int argc, char **argv)
 				return (print_err());
 			nb = (int)ft_atoi(argv[i]);
 			i++;
-			ft_lstadd_back(&g.pile_a, ft_lstnew(nb, 0));
+			ft_lstadd_back(&g.pile_a, ft_lstnew(nb, 0, 0));
 		}
 		i++;
 	}
@@ -154,6 +162,6 @@ int	main(int argc, char **argv)
 	}
 	check_lis(&g, argc, argv);
 	print_pile(g);
-	sort(&g);
+//	sort(&g);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/22 13:29:17 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/22 16:16:14 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	check_pile_a(t_pile *pile_a, int nb)
 	t_pile	*tmp;
 	int		i;
 
-	check = 0;
+	check = -1;
 	i = 0;
 	tmp = pile_a;
 	while (tmp->next)
@@ -72,6 +72,15 @@ int	check_pile_a(t_pile *pile_a, int nb)
 		if (tmp->nb < nb && tmp->next && tmp->next->nb > nb)
 			check = i;
 		tmp = tmp->next;
+	}
+	if (check == -1)
+	{
+		tmp = pile_a;
+		while (tmp->next && tmp->min != 1)
+		{
+			tmp = tmp->next;
+		}
+		
 	}
 //	if (pile_a->nb < nb && tmp->nb < nb && tmp->nb != pile_a->nb)		Check = sur le plus petit de A
 //		check = -1;

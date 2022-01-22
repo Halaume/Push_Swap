@@ -6,13 +6,13 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/22 13:29:25 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/22 16:16:13 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-t_pile	*ft_lstnew(int content, int is_lis)
+t_pile	*ft_lstnew(int content, int is_lis, int min)
 {
 	t_pile	*tmp;
 
@@ -21,6 +21,7 @@ t_pile	*ft_lstnew(int content, int is_lis)
 		return (NULL);
 	tmp->nb = content;
 	tmp->is_in_lis = is_lis;
+	tmp->min = min;
 	tmp->next = NULL;
 	return (tmp);
 }
