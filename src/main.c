@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/20 16:58:17 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:29:26 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	print_pile(t_env g)
 	printf("PILE_A\n\n");
 	while(g.pile_a)
 	{
-		printf("%d\n", g.pile_a->nb);
+		printf("%d\t->\t%d\n", g.pile_a->nb,g.pile_a->is_in_lis);
 		g.pile_a = g.pile_a->next;
 	}
 	printf("PILE_B\n\n");
 	while(g.pile_b)
 	{
-		printf("%d\n", g.pile_b->nb);
+		printf("%d\t->\t%d\n", g.pile_b->nb,g.pile_b->is_in_lis);
 		g.pile_b = g.pile_b->next;
 	}
 }
@@ -114,9 +114,6 @@ void	check_lis(t_env *g, int argc, char **argv)
 		else if (g->pile_a && i < argc)
 			ra(g);
 	}
-	tmp = g->pile_a;
-	while (tmp->next)
-		tmp = tmp->next;
 }
 
 int	main(int argc, char **argv)
@@ -157,5 +154,6 @@ int	main(int argc, char **argv)
 	}
 	check_lis(&g, argc, argv);
 	print_pile(g);
+	sort(&g);
 	return (0);
 }

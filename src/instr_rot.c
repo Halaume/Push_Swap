@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:59:11 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/20 12:06:22 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:29:23 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ra(t_env *g)
 	t_pile	*ftol;
 	t_pile	*tmp;
 
-	if (!g)
+	if (!g || !g->pile_a->next)
 		return (-1);
 	ftol = g->pile_a;
 	g->pile_a = g->pile_a->next;
@@ -35,7 +35,7 @@ int	rb(t_env *g)
 	t_pile	*ftol;
 	t_pile	*tmp;
 
-	if (!g)
+	if (!g || !g->pile_a->next)
 		return (-1);
 	ftol = g->pile_b;
 	g->pile_b = g->pile_b->next;

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:05:31 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/21 15:19:25 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:29:24 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ char	**ft_calloc(size_t nmemb, size_t size, char **argv)
 		dest[j] = malloc(sizeof(char) * ft_strlen(argv[j]) + 1);
 		if (!dest[j])
 		{
-//			j = -1;
-//			while (dest[++j])
-//				free(dest[j]);		PAS SUR
-				free(dest);
+			//			j = -1;
+			//			while (dest[++j])
+			//				free(dest[j]);		PAS SUR
+			free(dest);
 			return (NULL);
 		}
 	}
@@ -86,21 +86,21 @@ int	min(int argc, char **argv, int min)
 }
 
 /*int	is_min(int argc, char **argv, int min)
-{
-	int	i;
+  {
+  int	i;
 
-	i = 0;
-	while((int)ft_atoi(argv[i]) != min)
-		i++;
-	while (i < argc)
-	{
-		if ((int)ft_atoi(argv[i]) < min)
-			min = (int)ft_atoi(argv[i]);
-		i++;
-	}
-	printf("%d\n\n",min);
-	return (min);
-}*/
+  i = 0;
+  while((int)ft_atoi(argv[i]) != min)
+  i++;
+  while (i < argc)
+  {
+  if ((int)ft_atoi(argv[i]) < min)
+  min = (int)ft_atoi(argv[i]);
+  i++;
+  }
+  printf("%d\n\n",min);
+  return (min);
+  }*/
 
 char	**lis(int argc, char **argv)
 {
@@ -121,14 +121,14 @@ char	**lis(int argc, char **argv)
 	if (!list)
 		return (NULL);
 	longestlist = NULL;
+	currentmax = -2147483648;
 	while (i < argc)
 	{
-		currentmax = -2147483648;
 		j = i + 1;
 		lst_cnt = 0;
 		while (j < argc)
 		{
-			if(ft_atoi(argv[j]) > currentmax)
+			if (j < argc && ft_atoi(argv[j]) > currentmax)
 			{
 				if (j + 1 != argc && ft_atoi(argv[j + 1]) > currentmax && ft_atoi(argv[j]) > ft_atoi(argv[j + 1]))
 				{
@@ -167,18 +167,11 @@ char	**lis(int argc, char **argv)
 		free(longestlist);
 		return (NULL);
 	}
+	int w=-1;
+	if (longestlist)
+	{
+		while (longestlist[++w])
+			printf("La liste : %s\n", longestlist[w]);
+	}
 	return (longestlist);
 }
-
-/*int	main(int argc, char **argv)
-{
-	char **str = lis(argc,argv);
-	int i = -1;
-	if (str)
-	{
-		while (str[++i])
-		{
-			printf("La liste : %s\n", str[i]);
-		}
-	}
-}*/

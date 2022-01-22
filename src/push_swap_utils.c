@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:32:07 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/19 18:02:24 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:29:24 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ long long	ft_atoi(char *str)
 		i++;
 	}
 	return (res * neg);
+}
+
+int	pile_len(t_pile *pile)
+{
+	t_pile	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = pile;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
 }
 
 int	ft_isdigit(char *c)

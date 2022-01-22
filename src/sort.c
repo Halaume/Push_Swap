@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:24:34 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/21 15:28:47 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:29:22 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int	sort(t_env *g)
 
 	i = 0;
 	tmp = g->pile_b;
-	while (tmp->next)
+	while (tmp)
 	{
+		check_pos(g, tmp->nb);
 		i++;
 		tmp = tmp->next;
 	}
-	check_pos(g, tmp->nb);
+	return (1);
 }
