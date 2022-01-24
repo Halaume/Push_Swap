@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/22 16:16:15 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/24 18:26:50 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	print_err()
 	i = 0;
 	while(err[i])
 		write(2, &err[i++], 1);
-	return (-1);
+	exit (-1);
 }
 
 int	is_sort(int argc, char **argv)
@@ -75,6 +75,8 @@ int	checkarg(int argc, char **argv)
 		while (j < argc)
 		{
 			if (ft_strcmp(argv[i], argv[j]) == 0)
+				return (0);
+			if (!ft_isdigit(argv[j]))
 				return (0);
 			j++;
 		}
@@ -111,8 +113,11 @@ void	check_lis(t_env *g, int argc, char **argv)
 	}
 	tmp = g->pile_a;
 	while (tmp)
+	{
 		if (tmp->nb == currmin)
 			tmp->min = 1;
+		tmp = tmp->next;
+	}
 	i = 0;
 	while(i < argc)
 	{

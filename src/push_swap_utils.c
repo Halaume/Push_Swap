@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:32:07 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/22 13:29:24 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/24 13:08:34 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ long long	ft_atoi(char *str)
 			return (res);
 		res = res * 10 + str[i] - '0';
 		i++;
-	}
+		}
 	return (res * neg);
 }
 
@@ -63,9 +63,11 @@ int	ft_isdigit(char *c)
 	i = 0;
 	if (c[i] == '-' || c[i] == '+')
 		i++;
+	if (!c[i])
+		return (0);
 	while (c[i])
 	{
-		if (!(c[i] > 47 && c[i] < 58))
+		if ((c[i] > '9' || c[i] < '0'))
 			return (0);
 		i++;
 	}

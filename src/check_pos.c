@@ -6,24 +6,32 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/22 16:16:14 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:44:33 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
+int	big_pos(int pos1, int pos2)
+{
+	if (pos1 > pos2)
+		return (pos1);
+	else
+		return (pos2);
+}
+
 int	*best_pos(int *pos1, int *pos2)
 {
 	if ((pos1[0] >= 0 && pos1[1] >= 0) && (pos2[0] >= 0 && pos2[1] >= 0))
 	{
-		if (pos1[0] - pos1[1] < pos2[0] - pos2[1])
+		if (big_pos(pos1[0], pos1[1]) < big_pos(pos2[0], pos2[1]))
 			return (pos1);
 		else
 			return (pos2);
 	}
 	else if ((pos1[0] < 0 && pos1[1] < 0) && (pos2[0] < 0 && pos2[1] < 0))
 	{
-		if (pos1[0] + pos1[1] < pos2[0] + pos2[1])
+		if (big_pos(pos1[0], pos1[1]) > big_pos(pos2[0], pos2[1]))
 			return (pos1);
 		else
 			return (pos2);
