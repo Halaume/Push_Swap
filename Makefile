@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 13:44:31 by ghanquer          #+#    #+#              #
-#    Updated: 2022/01/22 16:16:18 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/01/25 11:37:56 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -c $< -o $@
 
 $(NAME): $(OBJ_DIRS) $(SRC)
-	$(MAKE) -j -s $(OBJ)
+	$(MAKE) -j $(OBJ)
 	$(CC) $(OBJ) -o $@
 
 clean:

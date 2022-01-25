@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/22 16:16:13 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/25 13:14:00 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ t_pile	*ft_lst_delfirst(t_pile *pile)
 
 	tmp = NULL;
 	if (pile->next)
-		tmp = pile->next;;
+		tmp = pile->next;
+	pile->next = NULL;
 	free(pile);
 	return (tmp);
 }

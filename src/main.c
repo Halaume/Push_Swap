@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/24 18:26:50 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/25 13:05:19 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	check_lis(t_env *g, int argc, char **argv)
 			}
 		}
 	}
+	free(lis_str);
 	tmp = g->pile_a;
 	while (tmp)
 	{
