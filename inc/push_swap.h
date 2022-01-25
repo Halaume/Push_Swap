@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/24 11:55:07 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:29:48 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,24 @@
 typedef struct s_pile {
 	int				nb;
 	int				is_in_lis;
-	int				min;
 	struct s_pile	*next;
+	struct s_pile	*prev;
 }	t_pile;
+
+typedef struct s_info {
+	t_pile	*begin_a;
+	t_pile	*last_a;
+	t_pile	*min_a;
+	t_pile	*begin_b;
+	t_pile	*last_b;
+	t_pile	*min_b;
+	int		disorder;
+}	t_info;
 
 typedef struct s_env {
 	t_pile	*pile_a;
 	t_pile	*pile_b;
+	t_info	info;
 }	t_env;
 
 int				print_err();
@@ -37,8 +48,9 @@ int				ft_isdigit(char *c);
 long long		ft_atoi(char *str);
 void			ft_lstadd_front(t_pile **alst, t_pile *new);
 void			ft_lstadd_back(t_pile **alst, t_pile *new);
-t_pile			*ft_lstnew(int content, int is_lis, int min);
+t_pile			*ft_lstnew(int content, int is_lis);
 t_pile			*ft_lst_delfirst(t_pile *pile);
+t_info			info_init(t_info info);
 char			**lis(int argc, char **argv);
 int				sort(t_env *g);
 int				*best_pos(int *pos1, int *pos2);

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/25 13:05:19 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:47:39 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 void	print_pile(t_env g)
 {
 	printf("PILE_A\n\n");
-	while(g.pile_a)
+	g.pile_a = g.info.begin_a;
+	while(g.pile_a != g.info.last_a)
 	{
 		printf("%d\t->\t%d\n", g.pile_a->nb,g.pile_a->is_in_lis);
 		g.pile_a = g.pile_a->next;
 	}
 	printf("PILE_B\n\n");
-	while(g.pile_b)
+	g.pile_b = g.info.begin_b;
+	while(g.pile_b != g.info.last_b)
 	{
 		printf("%d\t->\t%d\n", g.pile_b->nb,g.pile_b->is_in_lis);
 		g.pile_b = g.pile_b->next;
@@ -101,7 +103,7 @@ void	check_lis(t_env *g, int argc, char **argv)
 		while (lis_str[++i])
 		{
 			tmp = g->pile_a;
-			while (tmp)
+			while (tmp != g->info.last_a)
 			{
 				if (tmp->nb == (int)ft_atoi(lis_str[i]))
 					tmp->is_in_lis = 1;
@@ -115,18 +117,16 @@ void	check_lis(t_env *g, int argc, char **argv)
 	tmp = g->pile_a;
 	while (tmp)
 	{
-		if (tmp->nb == currmin)
-			tmp->min = 1;
 		tmp = tmp->next;
 	}
 	i = 0;
 	while(i < argc)
 	{
-		i++;
 		if (g->pile_a->next && g->pile_a->is_in_lis == 0)
 			pb(g);
 		else if (g->pile_a && i < argc)
 			ra(g);
+		i++;
 	}
 }
 
@@ -134,10 +134,12 @@ int	main(int argc, char **argv)
 {
 	int		i;
 	int		nb;
+	int		min;
 	t_env	g;
 
 	if (argc <= 2)
 		return (0);
+	min = 2147483647;
 	if (!checkarg(argc, argv))
 		return (print_err());
 	if (is_sort(argc, argv) == 0)
@@ -145,6 +147,7 @@ int	main(int argc, char **argv)
 	i = 1;
 	g.pile_a = NULL;
 	g.pile_b = NULL;
+	g.info = info_init(g.info);
 	while (i < argc)
 	{
 		while (argv[i])
@@ -156,17 +159,27 @@ int	main(int argc, char **argv)
 			if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648)
 				return (print_err());
 			nb = (int)ft_atoi(argv[i]);
+			if (nb < min)
+				min = nb;
 			i++;
-			ft_lstadd_back(&g.pile_a, ft_lstnew(nb, 0, 0));
+			ft_lstadd_back(&g.pile_a, ft_lstnew(nb, 0));
 		}
 		i++;
+	}
+	g.info.begin_a = g.pile_a;
+	while (g.pile_a->nb != nb)
+	{
+		if (g.pile_a->nb == min)
+			g.info.min_a = g.pile_a;
+		g.pile_a = g.pile_a->next;
 	}
 	if (argc == 3)
 	{
 		sa(&g);
 		return (0);
 	}
-	check_lis(&g, argc, argv);
+//	check_lis(&g, argc, argv);
+	pb(&g);
 	print_pile(g);
 //	sort(&g);
 	return (0);

@@ -6,13 +6,24 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/25 13:14:00 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:47:35 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-t_pile	*ft_lstnew(int content, int is_lis, int min)
+t_info	info_init(t_info info)
+{
+	info.begin_a = NULL;
+	info.last_a = NULL;
+	info.min_a = NULL;
+	info.begin_b = NULL;
+	info.last_b = NULL;
+	info.min_b = NULL;
+	return (info);
+}
+
+t_pile	*ft_lstnew(int content, int is_lis)
 {
 	t_pile	*tmp;
 
@@ -21,8 +32,8 @@ t_pile	*ft_lstnew(int content, int is_lis, int min)
 		return (NULL);
 	tmp->nb = content;
 	tmp->is_in_lis = is_lis;
-	tmp->min = min;
 	tmp->next = NULL;
+	tmp->prev = NULL;
 	return (tmp);
 }
 
@@ -38,8 +49,12 @@ void	ft_lstadd_back(t_pile **alst, t_pile *new)
 		{
 			tmp = *alst;
 			while (tmp->next)
+			{
+				printf("efwas\n");
 				tmp = tmp->next;
+			}
 			tmp->next = new;
+			new->prev = tmp;
 		}
 	}
 }
@@ -50,6 +65,7 @@ void	ft_lstadd_front(t_pile **alst, t_pile *new)
 	{
 		new->next = *alst;
 		*alst = new;
+		new->next->prev = new;
 	}
 }
 
@@ -60,7 +76,6 @@ t_pile	*ft_lst_delfirst(t_pile *pile)
 	tmp = NULL;
 	if (pile->next)
 		tmp = pile->next;
-	pile->next = NULL;
 	free(pile);
 	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:05:31 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/25 11:46:49 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:47:40 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,11 +139,10 @@ char	**lis(int argc, char **argv)
 	i = 0;
 	while (i < argc)
 	{
-		if (j == argc - 1)
+		if (j == argc)
 			j = 1;
 		else
 			j++;
-		printf("%d\n", j);
 		while (ft_atoi(argv[j]) != min)
 		{
 			if (ft_atoi(argv[j]) > currentmax)
@@ -168,7 +167,7 @@ char	**lis(int argc, char **argv)
 			if (j == argc)
 				j = 1;
 		}
-		j = i;
+		j++;
 		i++;
 		if (highestcount < lst_cnt)
 		{
