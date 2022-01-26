@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/25 17:29:48 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:39:36 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ t_info			info_init(t_info info);
 char			**lis(int argc, char **argv);
 int				sort(t_env *g);
 int				*best_pos(int *pos1, int *pos2);
+t_pile			*get_min_a(t_env *g);
+
+
+
+void			print_info(t_env g);
 void			print_pile(t_env g);
 
 int				sa(t_env *g);

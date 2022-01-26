@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/25 17:47:35 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:39:35 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	ft_lstadd_back(t_pile **alst, t_pile *new)
 			tmp = *alst;
 			while (tmp->next)
 			{
-				printf("efwas\n");
 				tmp = tmp->next;
 			}
 			tmp->next = new;

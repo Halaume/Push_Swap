@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:32:07 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/24 13:08:34 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:39:36 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,23 @@ int	ft_isdigit(char *c)
 		i++;
 	}
 	return (1);
+}
+
+t_pile	*get_min_a(t_env *g)
+{
+	int		currmin;
+	t_pile	*min;
+
+	min = g->pile_a;
+	currmin = 2147483647;
+	while (g->pile_a != g->info.last_a)
+	{
+		if (g->pile_a->nb < currmin)
+		{
+			currmin = g->pile_a->nb;
+			min = g->pile_a;
+		}
+		g->pile_a = g->pile_a->next;
+	}
+	return (min);
 }
