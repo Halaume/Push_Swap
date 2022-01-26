@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/26 12:39:37 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:19:39 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ void	print_pile(t_env g)
 		printf("%d\t->\t%d\n", g.pile_b->nb,g.pile_b->is_in_lis);
 		g.pile_b = g.pile_b->next;
 	}
+	g.pile_a = g.info.begin_a;
+	g.pile_b = g.info.begin_b;
 }
 
 void	print_info(t_env g)
 {
 	printf("begin a -> %d,last_a -> %d, min_a -> %d\n", g.info.begin_a->nb, g.info.last_a->nb, g.info.min_a->nb);
 	printf("begin a prev -> %d,last_a next -> %d, min_a -> %d\n", g.info.begin_a->prev->nb, g.info.last_a->next->nb, g.info.min_a->nb);
-//	if (g.pile_b)
+//	if (g.info.begin_b != NULL)
 //	printf("begin b -> %d,last_b -> %d, min_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb, g.info.min_b->nb);
 }
 
@@ -156,7 +158,7 @@ int	main(int argc, char **argv)
 	i = 1;
 	g.pile_a = NULL;
 	g.pile_b = NULL;
-	g.info = info_init(g.info);
+	g.info = info_init(g);
 	while (i < argc)
 	{
 		while (argv[i])
@@ -190,12 +192,13 @@ int	main(int argc, char **argv)
 		sa(&g);
 		return (0);
 	}
-//	check_lis(&g, argc, argv);
+	get_lis(&g);
 	print_pile(g);
 	print_info(g);
-	pb(&g);
-	pb(&g);
+	rra(&g);
 	print_pile(g);
+//	printf("begin b -> %d,last_b -> %d, min_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb, g.info.min_b->nb);
+//	printf("begin b prev -> %d,last_b next -> %d, min_b -> %d\n", g.info.begin_b->prev->nb, g.info.last_b->next->nb, g.info.min_b->nb);
 //	sort(&g);
 	print_info(g);
 	return (0);

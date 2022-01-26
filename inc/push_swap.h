@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/26 12:39:36 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:19:40 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ void			ft_lstadd_front(t_pile **alst, t_pile *new);
 void			ft_lstadd_back(t_pile **alst, t_pile *new);
 t_pile			*ft_lstnew(int content, int is_lis);
 t_pile			*ft_lst_delfirst(t_pile *pile);
-t_info			info_init(t_info info);
+t_info			info_init(t_env g);
 char			**lis(int argc, char **argv);
 int				sort(t_env *g);
 int				*best_pos(int *pos1, int *pos2);
 t_pile			*get_min_a(t_env *g);
-
+t_pile			*get_min_b(t_env *g);
+void			get_lis(t_env *g);
 
 
 void			print_info(t_env g);

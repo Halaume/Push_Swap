@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:57:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/17 11:42:22 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:04:09 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ int	sa(t_env *g)
 {
 	t_pile	*tmp;
 
-	if (!g->pile_a)
+	if (!g->info.begin_a)
 		return (-1);
-	tmp = g->pile_a;
-	g->pile_a = g->pile_a->next;
-	tmp->next = g->pile_a->next;
-	g->pile_a->next = tmp;
+	tmp = g->info.begin_a;
+	g->info.begin_a = g->info.begin_a->next;
+	tmp->next = g->info.begin_a->next;
+	g->info.begin_a->next = tmp;
+	g->info.begin_a->next->prev = g->info.begin_a;
+	g->info.begin_a->prev = g->info.last_a;
+	g->info.last_a->next = g->info.begin_a;
 	putstr("sa\n");
 	return (0);
 }
@@ -30,10 +33,15 @@ int	sb(t_env *g)
 {
 	t_pile	*tmp;
 
-	tmp = g->pile_b;
-	g->pile_b = g->pile_b->next;
-	tmp->next = g->pile_b->next;
-	g->pile_b->next = tmp;
+	if (!g->info.begin_b)
+		return (-1);
+	tmp = g->info.begin_b;
+	g->info.begin_b = g->info.begin_b->next;
+	tmp->next = g->info.begin_b->next;
+	g->info.begin_b->next = tmp;
+	g->info.begin_b->next->prev = g->info.begin_b;
+	g->info.begin_b->prev = g->info.last_b;
+	g->info.last_b->next = g->info.begin_b;
 	putstr("sb\n");
 	return (0);
 }

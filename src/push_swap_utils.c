@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:32:07 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/26 12:39:36 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:19:37 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ long long	ft_atoi(char *str)
 int	pile_len(t_pile *pile)
 {
 	t_pile	*tmp;
+	int		save;
 	int		i;
 
-	i = 0;
-	tmp = pile;
-	while (tmp)
+	i = 1;
+	if (!pile)
+		return (0);
+	tmp = pile->next;
+	save = pile->nb;
+	while (tmp->nb != save)
 	{
 		tmp = tmp->next;
 		i++;
@@ -81,6 +85,7 @@ t_pile	*get_min_a(t_env *g)
 
 	min = g->pile_a;
 	currmin = 2147483647;
+	g->pile_a = g->info.begin_a;
 	while (g->pile_a != g->info.last_a)
 	{
 		if (g->pile_a->nb < currmin)
@@ -89,6 +94,36 @@ t_pile	*get_min_a(t_env *g)
 			min = g->pile_a;
 		}
 		g->pile_a = g->pile_a->next;
+	}
+	if (g->pile_a->nb < currmin)
+	{
+		currmin = g->pile_a->nb;
+		min = g->pile_a;
+	}
+	return (min);
+}
+
+t_pile	*get_min_b(t_env *g)
+{
+	int		currmin;
+	t_pile	*min;
+
+	min = g->pile_b;
+	currmin = 2147483647;
+	g->pile_b = g->info.begin_b;
+	while (g->pile_b != g->info.last_b)
+	{
+		if (g->pile_b->nb < currmin)
+		{
+			currmin = g->pile_b->nb;
+			min = g->pile_b;
+		}
+		g->pile_b = g->pile_b->next;
+	}
+	if (g->pile_b->nb < currmin)
+	{
+		currmin = g->pile_b->nb;
+		min = g->pile_b;
 	}
 	return (min);
 }

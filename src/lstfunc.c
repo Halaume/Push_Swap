@@ -6,21 +6,21 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/26 12:39:35 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:19:08 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-t_info	info_init(t_info info)
+t_info	info_init(t_env g)
 {
-	info.begin_a = NULL;
-	info.last_a = NULL;
-	info.min_a = NULL;
-	info.begin_b = NULL;
-	info.last_b = NULL;
-	info.min_b = NULL;
-	return (info);
+	g.info.begin_a = g.pile_a;
+	g.info.last_a = NULL;
+	g.info.min_a = NULL;
+	g.info.begin_b = g.pile_b;
+	g.info.last_b = NULL;
+	g.info.min_b = NULL;
+	return (g.info);
 }
 
 t_pile	*ft_lstnew(int content, int is_lis)
@@ -43,11 +43,11 @@ void	ft_lstadd_back(t_pile **alst, t_pile *new)
 
 	if (alst && new)
 	{
+		tmp = *alst;
 		if (*alst == NULL)
 			*alst = new;
 		else
 		{
-			tmp = *alst;
 			while (tmp->next)
 			{
 				tmp = tmp->next;

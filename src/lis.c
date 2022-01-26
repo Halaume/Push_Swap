@@ -5,199 +5,86 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 14:05:31 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/25 17:47:40 by ghanquer         ###   ########.fr       */
+/*   Created: 2022/01/26 16:21:14 by ghanquer          #+#    #+#             */
+/*   Updated: 2022/01/26 17:19:41 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	ft_strlen(char	*str)
+void	rem_double(t_env *g)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{}
-	return (i);
-}
-
-char	**ft_calloc_base(size_t nmemb, size_t size, char **argv)
-{
-	char	**dest;
-	size_t	i;
-	size_t	j;
-
-	j = 0;
-	i = -1;
-	dest = malloc(sizeof(char *) * nmemb);
-	if (!dest)
-		return (NULL);
-	if (nmemb * size > 2147483647)
-		return (NULL);
-	while (++j < nmemb)
-		dest[j - 1] = malloc(sizeof(char) * ft_strlen(argv[j]) + 1);
-	while (++i < nmemb)
-		dest[i] = NULL;
-	return (dest);
-}
-
-char	**ft_calloc(size_t nmemb, size_t size, char **argv)
-{
-	char	**dest;
-	size_t	i;
-	size_t	j;
-
-	j = -1;
-	i = -1;
-	dest = malloc(sizeof(char *) * (nmemb + 1));
-	if (!dest)
-		return (NULL);
-	if (nmemb * size > 2147483647)
-		return (NULL);
-	while (++j < nmemb)
-	{
-		dest[j] = malloc(sizeof(char) * ft_strlen(argv[j]) + 1);
-		if (!dest[j])
-		{
-			//			j = -1;
-			//			while (dest[++j])
-			//				free(dest[j]);		PAS SUR
-			free(dest);
-			return (NULL);
-		}
-	}
-	while (++i <= nmemb)
-		dest[i] = NULL;
-	return (dest);
-}
-
-int	min(int argc, char **argv, int min)
-{
-	int	i;
-
-	i = -1;
-	while (++i < argc)
-	{
-		if ((int)ft_atoi(argv[i]) < min)
-			min = (int)ft_atoi(argv[i]);
-	}
-	return (min);
-}
-
-/*int	is_min(int argc, char **argv, int min)
-  {
-  int	i;
-
-  i = 0;
-  while((int)ft_atoi(argv[i]) != min)
-  i++;
-  while (i < argc)
-  {
-  if ((int)ft_atoi(argv[i]) < min)
-  min = (int)ft_atoi(argv[i]);
-  i++;
-  }
-  printf("%d\n\n",min);
-  return (min);
-  }*/
-
-char	**lis(int argc, char **argv)
-{
-	char	**list;
-	char	**longestlist;
-	int		currentmax;
-	int		highestcount;
+	t_pile	*current;
+	t_pile	*tmp;
 	int		i;
-	int		j;
-	int		lst_cnt;
-	int		k;
-	int		min;
 
-	k = 0;
-	lst_cnt = 0;
-	i = 1;
-	highestcount = 0;
-	min = 2147483647;
-	list = ft_calloc_base(argc, sizeof(char *), argv);
-	if (!list)
-		return (NULL);
-	longestlist = NULL;
-	while (i < argc)
+	i = pile_len(g->info.begin_a);
+	current = g->info.min_a;
+	tmp = g->info.min_a;
+	while (tmp != g->info.min_a->prev)
 	{
-		if ((int)ft_atoi(argv[i]) < min)
+		current = g->info.min_a;
+		while (current != g->info.min_a->prev)
 		{
-			j = i;
-			min = ft_atoi(argv[j]);
+			if (current != tmp && current->is_in_lis != -1 && current->is_in_lis == tmp->is_in_lis)
+			{
+				g->info.disorder++;
+				current->is_in_lis = -1;
+			}
+			current = current->next;
 		}
-		i++;
+		if (current != tmp && current->is_in_lis != -1 && current->is_in_lis == tmp->is_in_lis)
+		{
+			g->info.disorder++;
+			current->is_in_lis = -1;
+		}
+		tmp = tmp->next;
 	}
-	currentmax = min;
-	list[lst_cnt] = argv[j];
-	lst_cnt++;
-	printf("%d\n", min);
-	i = 0;
-	while (i < argc)
+}
+
+void	get_move(t_env *g)
+{
+	t_pile *current;
+	t_pile *tmp;
+
+	tmp = g->info.min_a;
+	current = tmp->next;
+	while (current != tmp)
 	{
-		if (j == argc)
-			j = 1;
-		else
-			j++;
-		while (ft_atoi(argv[j]) != min)
+		if (current->is_in_lis == tmp->is_in_lis - 1 
+				&& current->nb > tmp->nb)
 		{
-			if (ft_atoi(argv[j]) > currentmax)
-			{
-				if (j + 1 != argc && ft_atoi(argv[j + 1]) > currentmax && ft_atoi(argv[j]) > ft_atoi(argv[j + 1]))
-				{
-				}
-				else if (j + 1 == argc - 1)
-				{
-					if (ft_atoi(argv[1]) > currentmax && ft_atoi(argv[j]) > ft_atoi(argv[0]))
-					{
-					}
-				}
-				else
-				{
-					list[lst_cnt] = argv[j];
-					lst_cnt++;
-					currentmax = (int)ft_atoi(argv[j]);
-				}
-			}
-			j++;
-			if (j == argc)
-				j = 1;
+			tmp = current;
 		}
-		j++;
-		i++;
-		if (highestcount < lst_cnt)
+		else if (current->is_in_lis <= tmp->is_in_lis && current->is_in_lis != -1)
 		{
-			highestcount = lst_cnt;
-			if (longestlist != NULL)
-				free(longestlist);
-			longestlist = ft_calloc(lst_cnt, sizeof(char *), list);
-			if (!longestlist)
-			{
-				free(list);
-				return (NULL);
-			}
-			while (k < lst_cnt)
-			{
-				longestlist[k] = list[k];
-				k++;
-			}
+			g->info.disorder++;
+			current->is_in_lis = -1;
+		}
+		current = current->next;
+	}
+	current = current->next;
+}
+
+void	get_lis(t_env *g)
+{
+	t_pile *current;
+	t_pile *tmp;
+
+	current = g->info.min_a->prev;
+	current->is_in_lis = 1;
+	while (current != g->info.min_a)
+	{
+		current = current->prev;
+		current->is_in_lis = 1;
+		tmp = current->next;
+		while (tmp != g->info.min_a)
+		{
+			if (current->nb < tmp->nb && current->is_in_lis < tmp->is_in_lis + 1)
+				current->is_in_lis = tmp->is_in_lis + 1;
+			tmp = tmp->next;
 		}
 	}
-	free(list);
-	if (k == argc - 1)
-	{
-		free(longestlist);
-		return (NULL);
-	}
-	int w=-1;
-	if (longestlist)
-	{
-		while (longestlist[++w])
-			printf("La liste : %s\n", longestlist[w]);
-	}
-	return (longestlist);
+	get_move(g);
+	rem_double(g);
 }
