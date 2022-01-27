@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/27 15:33:02 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/27 16:42:08 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_pile	*ft_lstnew(int content, int is_lis)
 	tmp->is_in_lis = is_lis;
 	tmp->next = NULL;
 	tmp->prev = NULL;
- return (tmp);
+	return (tmp);
 }
 
 void	ft_lstadd_back(t_pile **alst, t_pile *new)

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/27 15:32:59 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:28:39 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	print_pile(t_env g)
 		printf("%d\t->\t%d\n", g.pile_b->nb,g.pile_b->is_in_lis);
 		g.pile_b = g.pile_b->next;
 	}
+		printf("%d\t->\t%d\n", g.info.last_b->nb,g.info.last_b->is_in_lis);
 	g.pile_a = g.info.begin_a;
 	g.pile_b = g.info.begin_b;
 }
@@ -36,7 +37,7 @@ void	print_pile(t_env g)
 void	print_info(t_env g)
 {
 	printf("begin a -> %d,last_a -> %d, min_a -> %d\n", g.info.begin_a->nb, g.info.last_a->nb, g.info.min_a->nb);
-	printf("begin a prev -> %d,last_a next -> %d, min_a -> %d\n", g.info.begin_a->prev->nb, g.info.last_a->next->nb, g.info.min_a->nb);
+	printf("begin a prev -> %d,last_a next -> %d, min_a -> %d\n\n\n", g.info.begin_a->prev->nb, g.info.last_a->next->nb, g.info.min_a->nb);
 //	if (g.info.begin_b != NULL)
 //	printf("begin b -> %d,last_b -> %d, min_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb, g.info.min_b->nb);
 }
@@ -101,18 +102,23 @@ int	checkarg(int argc, char **argv)
 void	check_lis(t_env *g)
 {
 	t_pile	*tmp;
+	t_pile	*last;
 	int		i;
 
 	tmp = NULL;
 	i = -1;
 	tmp = g->info.begin_a;
-	while (tmp != g->info.last_a)
+	last = g->info.last_a;
+	while (tmp != last)
 	{
-		if (g->info.begin_a->is_in_lis == 0)
+		tmp = g->info.begin_a;
+		if (tmp->is_in_lis < 0)
+		{
+			printf("oui%d\n",tmp->nb);
 			pb(g);
+		}
 		else
 			ra(g);
-		tmp = tmp->next;
 	}
 }
 
@@ -168,7 +174,8 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	get_lis(&g);
-	print_pile(g);
+//	print_pile(g);
+//	print_info(g);
 	print_info(g);
 	check_lis(&g);
 	print_pile(g);

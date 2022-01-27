@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:32:07 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/27 15:33:00 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:19:55 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ t_pile	*get_min_a(t_env *g)
 	min = g->pile_a;
 	while (g->pile_a != g->info.last_a)
 	{
-		printf("%d->%d\n", g->pile_a->nb, g->pile_a->next->nb);
 		if (g->pile_a->nb < currmin)
 		{
 			currmin = g->pile_a->nb;
