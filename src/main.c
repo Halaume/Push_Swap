@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/27 13:00:32 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/27 15:32:59 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_pile(t_env g)
 {
-	printf("PILE_A\n\n");
+	printf("PILE_A\n");
 	g.pile_a = g.info.begin_a;
 	while(g.pile_a != g.info.last_a)
 	{
@@ -22,7 +22,7 @@ void	print_pile(t_env g)
 		g.pile_a = g.pile_a->next;
 	}
 		printf("%d\t->\t%d\n", g.info.last_a->nb,g.info.last_a->is_in_lis);
-	printf("PILE_B\n\n");
+	printf("\nPILE_B\n");
 	g.pile_b = g.info.begin_b;
 	while(g.pile_b != g.info.last_b)
 	{
@@ -98,46 +98,21 @@ int	checkarg(int argc, char **argv)
 	return (1);
 }
 
-void	check_lis(t_env *g, int argc, char **argv)
+void	check_lis(t_env *g)
 {
-	char	**lis_str;
 	t_pile	*tmp;
 	int		i;
-	int		currmin;
 
 	tmp = NULL;
 	i = -1;
-	lis_str = lis(argc, argv);
-	currmin = 2147483647;
-	if (lis_str)
+	tmp = g->info.begin_a;
+	while (tmp != g->info.last_a)
 	{
-		while (lis_str[++i])
-		{
-			tmp = g->pile_a;
-			while (tmp != g->info.last_a)
-			{
-				if (tmp->nb == (int)ft_atoi(lis_str[i]))
-					tmp->is_in_lis = 1;
-				if (tmp->nb < currmin && tmp->is_in_lis == 1)
-					currmin = tmp->nb;
-				tmp = tmp->next;
-			}
-		}
-	}
-	free(lis_str);
-	tmp = g->pile_a;
-	while (tmp)
-	{
-		tmp = tmp->next;
-	}
-	i = 0;
-	while(i < argc)
-	{
-		if (g->pile_a->next && g->pile_a->is_in_lis == 0)
+		if (g->info.begin_a->is_in_lis == 0)
 			pb(g);
-		else if (g->pile_a && i < argc)
+		else
 			ra(g);
-		i++;
+		tmp = tmp->next;
 	}
 }
 
@@ -193,12 +168,10 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	get_lis(&g);
-//	print_pile(g);
+	print_pile(g);
 	print_info(g);
-	pb(&g);
-	pb(&g);
-	pb(&g);
-//	print_pile(g);
+	check_lis(&g);
+	print_pile(g);
 	printf("begin b -> %d,last_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb);
 	printf("begin b prev -> %d,last_b next -> %d\n", g.info.begin_b->prev->nb, g.info.last_b->next->nb);
 //	sort(&g);

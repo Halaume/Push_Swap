@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:58:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/27 13:00:28 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/27 15:33:01 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,23 @@ int	pb(t_env *g)
 	g->info.begin_a = g->info.begin_a->next;
 	g->info.begin_a->prev = g->info.last_a;
 	g->info.last_a->next = g->info.begin_a;
+//	g->pile_a = ft_lst_delfirst(g->pile_a);
+	g->info.min_a = get_min_a(g);
 	if (tmp)
 	{
 		tmp = g->info.begin_b;
+		g->info.begin_b->next = g->info.last_b->next;
 		g->info.begin_b->prev = g->info.last_b;
+		g->info.last_b->next = g->info.begin_b;
 	}
 	else
 	{
 		g->info.last_b = g->info.begin_b;
 		g->info.begin_b->prev = g->info.last_b;
 		g->info.last_b->next = g->info.begin_b;
+		g->info.begin_b->next = g->info.begin_b;
+		g->info.last_b->prev = g->info.begin_b;
 	}
-//	g->pile_a = ft_lst_delfirst(g->pile_a);
-	g->info.min_a = get_min_a(g);
 	putstr("pb\n");
 	return (0);
 }
