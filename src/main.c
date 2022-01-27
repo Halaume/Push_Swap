@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/26 17:19:39 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:00:32 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,12 +193,14 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	get_lis(&g);
-	print_pile(g);
+//	print_pile(g);
 	print_info(g);
-	rra(&g);
-	print_pile(g);
-//	printf("begin b -> %d,last_b -> %d, min_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb, g.info.min_b->nb);
-//	printf("begin b prev -> %d,last_b next -> %d, min_b -> %d\n", g.info.begin_b->prev->nb, g.info.last_b->next->nb, g.info.min_b->nb);
+	pb(&g);
+	pb(&g);
+	pb(&g);
+//	print_pile(g);
+	printf("begin b -> %d,last_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb);
+	printf("begin b prev -> %d,last_b next -> %d\n", g.info.begin_b->prev->nb, g.info.last_b->next->nb);
 //	sort(&g);
 	print_info(g);
 	return (0);

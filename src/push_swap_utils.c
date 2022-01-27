@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:32:07 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/26 17:19:37 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:00:30 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ t_pile	*get_min_a(t_env *g)
 	int		currmin;
 	t_pile	*min;
 
-	min = g->pile_a;
 	currmin = 2147483647;
 	g->pile_a = g->info.begin_a;
+	min = g->pile_a;
 	while (g->pile_a != g->info.last_a)
 	{
 		if (g->pile_a->nb < currmin)
@@ -103,27 +103,27 @@ t_pile	*get_min_a(t_env *g)
 	return (min);
 }
 
-t_pile	*get_min_b(t_env *g)
+t_pile	*get_max_a(t_env *g)
 {
-	int		currmin;
-	t_pile	*min;
+	int		currmax;
+	t_pile	*max;
 
-	min = g->pile_b;
-	currmin = 2147483647;
-	g->pile_b = g->info.begin_b;
-	while (g->pile_b != g->info.last_b)
+	max = g->info.begin_a;;
+	currmax = -2147483648;
+	g->pile_a = g->info.begin_a;
+	while (g->pile_a != g->info.last_a)
 	{
-		if (g->pile_b->nb < currmin)
+		if (g->pile_a->nb > currmax)
 		{
-			currmin = g->pile_b->nb;
-			min = g->pile_b;
+			currmax = g->pile_a->nb;
+			max = g->pile_a;
 		}
-		g->pile_b = g->pile_b->next;
+		g->pile_a = g->pile_a->next;
 	}
-	if (g->pile_b->nb < currmin)
+	if (g->pile_a->nb > currmax)
 	{
-		currmin = g->pile_b->nb;
-		min = g->pile_b;
+		currmax = g->pile_a->nb;
+		max = g->pile_a;
 	}
-	return (min);
+	return (max);
 }

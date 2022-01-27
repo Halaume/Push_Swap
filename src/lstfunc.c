@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/26 17:19:08 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:00:32 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_info	info_init(t_env g)
 	g.info.min_a = NULL;
 	g.info.begin_b = g.pile_b;
 	g.info.last_b = NULL;
-	g.info.min_b = NULL;
 	return (g.info);
 }
 
@@ -34,7 +33,7 @@ t_pile	*ft_lstnew(int content, int is_lis)
 	tmp->is_in_lis = is_lis;
 	tmp->next = NULL;
 	tmp->prev = NULL;
-	return (tmp);
+ return (tmp);
 }
 
 void	ft_lstadd_back(t_pile **alst, t_pile *new)
@@ -54,6 +53,30 @@ void	ft_lstadd_back(t_pile **alst, t_pile *new)
 			}
 			tmp->next = new;
 			new->prev = tmp;
+		}
+	}
+}
+
+void	ft_lstadd_back_circle(t_pile **alst, t_pile *new)
+{
+	t_pile	*tmp;
+	t_pile	*start;
+
+	start = *alst;
+	if (alst && new)
+	{
+		tmp = *alst;
+		if (*alst == NULL)
+			*alst = new;
+		else
+		{
+			while (tmp->next != start)
+			{
+				tmp = tmp->next;
+			}
+			tmp->next = new;
+			new->prev = tmp;
+			new->next = start;
 		}
 	}
 }
