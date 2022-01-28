@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 13:44:31 by ghanquer          #+#    #+#              #
-#    Updated: 2022/01/26 17:16:24 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/01/28 13:08:02 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,15 +34,19 @@ CFLAGS = -Wall -Wextra -Werror
 #HOW TO LIST .c 
 #	ls -l | awk '{print $9}' | grep -E ".c$"| sed "s/\.c/ \\\/g" | sed '$s/\\$//g'
 
-SRC_FT = instr_push\
-		instr_revrot\
-		instr_rot\
-		instr_swap\
-		lstfunc\
-		main\
-		push_swap_utils\
-		lis\
-		push_swap
+SRC_FT = 	check_pos\
+			check_pos_last\
+			instr_push\
+			instr_revrot\
+			instr_rot\
+			instr_swap\
+			lis\
+			listest\
+			lstfunc\
+			main\
+			push_swap\
+			push_swap_utils\
+			sort
 
 all: $(NAME)
 
@@ -92,5 +96,5 @@ coffee: all clean
 	@echo "\0033[1;32m\033[3C                    Take Your Coffee"
 	$(call print_aligned_coffee)
 
-.SECONDARY: $(OBJ)
+.SECONDARY: $(OBJ) $(OBJ_DIR)
 .PHONY: all clean fclean re coffee

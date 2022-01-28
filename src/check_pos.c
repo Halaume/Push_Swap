@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/27 13:00:34 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:07:57 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	check_pile_a(t_env *g, int nb)
 
 	check = -1;
 	i = 0;
-	if (nb > g->info.begin_a->nb && nb < g->info.last_a->nb)
+	if ((nb < g->info.begin_a->nb && nb > g->info.last_a->nb) || (nb > g->info.begin_a->nb && nb < g->info.last_a->nb))
 		return (0);
 	if (nb > g->info.max_a->nb)
 	{
@@ -103,7 +103,6 @@ int	*check_pos(t_env *g, int nb)
 	pos = malloc(sizeof(int) * 4);
 	if (!pos)
 		return (NULL);
-	printf("\nnb : %d\n", nb);
 	g->pile_a = g->info.begin_a;
 	g->pile_b = g->info.begin_b;
 	pos[0] = check_pile_a(g, nb);
@@ -112,7 +111,9 @@ int	*check_pos(t_env *g, int nb)
 	g->pile_b = g->info.last_b;
 	pos[2] = check_pile_a_last(g, nb);
 	pos[3] = check_pile_b_last(g, nb);
-	printf("Pos1 : %d\n", pos[0]);
-	printf("Pos2 : %d\n", pos[1]);
+//	printf("\nPos1 : %d\n", pos[0]);
+//	printf("Pos2 : %d\n", pos[1]);
+//	printf("Pos3 : %d\n", pos[2]);
+//	printf("Pos4 : %d\n\n", pos[3]);
 	return (pos);
 }

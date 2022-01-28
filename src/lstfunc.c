@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/27 16:42:08 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:07:59 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_info	info_init(t_env g)
 	g.info.begin_a = g.pile_a;
 	g.info.last_a = NULL;
 	g.info.min_a = NULL;
+	g.info.size_a = 0;
+	g.info.size_b = 0;
 	g.info.begin_b = g.pile_b;
 	g.info.last_b = NULL;
 	return (g.info);

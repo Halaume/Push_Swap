@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:57:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/26 16:04:09 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:08:00 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	sa(t_env *g)
 	tmp = g->info.begin_a;
 	g->info.begin_a = g->info.begin_a->next;
 	tmp->next = g->info.begin_a->next;
+	g->info.begin_a->next->prev = tmp;
 	g->info.begin_a->next = tmp;
 	g->info.begin_a->next->prev = g->info.begin_a;
 	g->info.begin_a->prev = g->info.last_a;
@@ -38,6 +39,7 @@ int	sb(t_env *g)
 	tmp = g->info.begin_b;
 	g->info.begin_b = g->info.begin_b->next;
 	tmp->next = g->info.begin_b->next;
+	g->info.begin_b->next->prev = tmp;
 	g->info.begin_b->next = tmp;
 	g->info.begin_b->next->prev = g->info.begin_b;
 	g->info.begin_b->prev = g->info.last_b;

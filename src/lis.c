@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:21:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/27 15:00:54 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:08:04 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,11 @@ void	rem_double(t_env *g)
 		while (current != g->info.min_a->prev)
 		{
 			if (current != tmp && current->is_in_lis != -1 && current->is_in_lis == tmp->is_in_lis)
-			{
-				g->info.disorder++;
 				current->is_in_lis = -1;
-			}
 			current = current->next;
 		}
 		if (current != tmp && current->is_in_lis != -1 && current->is_in_lis == tmp->is_in_lis)
-		{
-			g->info.disorder++;
 			current->is_in_lis = -1;
-		}
 		tmp = tmp->next;
 	}
 }
@@ -51,16 +45,10 @@ void	get_move(t_env *g)
 	current = tmp->next;
 	while (current != tmp)
 	{
-		if (current->is_in_lis == tmp->is_in_lis - 1 
-				&& current->nb > tmp->nb)
-		{
+		if (current->is_in_lis == tmp->is_in_lis - 1 && current->nb > tmp->nb)
 			tmp = current;
-		}
 		else if (current->is_in_lis <= tmp->is_in_lis && current->is_in_lis != -1)
-		{
-			g->info.disorder++;
 			current->is_in_lis = -1;
-		}
 		current = current->next;
 	}
 	current = current->next;

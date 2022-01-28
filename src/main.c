@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/27 17:28:39 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:08:03 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,7 @@ void	check_lis(t_env *g)
 	{
 		tmp = g->info.begin_a;
 		if (tmp->is_in_lis < 0)
-		{
-			printf("oui%d\n",tmp->nb);
 			pb(g);
-		}
 		else
 			ra(g);
 	}
@@ -154,6 +151,7 @@ int	main(int argc, char **argv)
 			if (nb < min)
 				min = nb;
 			i++;
+			g.info.size_a++;
 			ft_lstadd_back(&g.pile_a, ft_lstnew(nb, 0));
 		}
 		i++;
@@ -173,15 +171,17 @@ int	main(int argc, char **argv)
 		sa(&g);
 		return (0);
 	}
+	g.info.min_a = get_min_a(&g);
+	g.info.max_a = get_max_a(&g);
 	get_lis(&g);
 //	print_pile(g);
 //	print_info(g);
-	print_info(g);
 	check_lis(&g);
-	print_pile(g);
-	printf("begin b -> %d,last_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb);
-	printf("begin b prev -> %d,last_b next -> %d\n", g.info.begin_b->prev->nb, g.info.last_b->next->nb);
-//	sort(&g);
-	print_info(g);
+//	print_pile(g);
+//	print_info(g);
+//	printf("\nbegin b -> %d,last_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb);
+//	printf("begin b prev -> %d,last_b next -> %d\n", g.info.begin_b->prev->nb, g.info.last_b->next->nb);
+	sort(&g);
+//	print_info(g);
 	return (0);
 }

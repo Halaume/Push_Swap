@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/27 13:00:31 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:08:02 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ typedef struct s_info {
 	t_pile	*begin_a;
 	t_pile	*last_a;
 	t_pile	*min_a;
+	int		size_a;
 	t_pile	*max_a;
 	t_pile	*begin_b;
 	t_pile	*last_b;
-	int		disorder;
+	int		size_b;
 }	t_info;
 
 typedef struct s_env {
@@ -71,8 +72,8 @@ int				ss(t_env *g);
 int				pa(t_env *g);
 int				pb(t_env *g);
 int				ra(t_env *g);
-int				ra(t_env *g);
-int				ra(t_env *g);
+int				rb(t_env *g);
+int				rr(t_env *g);
 int				rra(t_env *g);
 int				rrb(t_env *g);
 int				rrr(t_env *g);
