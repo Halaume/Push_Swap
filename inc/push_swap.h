@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/28 13:08:02 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:09:05 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int				*best_pos(int *pos1, int *pos2);
 t_pile			*get_min_a(t_env *g);
 t_pile			*get_max_a(t_env *g);
 void			get_lis(t_env *g);
+void			set_min_first(t_env *g);
 
 
 void			print_info(t_env g);

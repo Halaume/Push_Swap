@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/28 13:07:57 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:09:03 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	check_pile_a(t_env *g, int nb)
 		return (0);
 	if (nb > g->info.max_a->nb)
 	{
-		while (g->pile_a != g->info.max_a)
+		while (g->pile_a != g->info.max_a->next)
 		{
 			g->pile_a = g->pile_a->next;
 			i++;
@@ -86,7 +86,7 @@ int	check_pile_a(t_env *g, int nb)
 	{
 		i++;
 		if (g->pile_a->nb < nb && g->pile_a->next->nb > nb)
-			check = i;
+			return (i);
 		g->pile_a = g->pile_a->next;
 	}
 	if (g->pile_a->nb < nb && g->pile_a->next->nb > nb)
@@ -104,6 +104,7 @@ int	*check_pos(t_env *g, int nb)
 	if (!pos)
 		return (NULL);
 	g->pile_a = g->info.begin_a;
+//	printf("\nbegin b : %d\n", g->info.begin_b->nb);
 	g->pile_b = g->info.begin_b;
 	pos[0] = check_pile_a(g, nb);
 	pos[1] = check_pile_b(g, nb);
@@ -111,6 +112,7 @@ int	*check_pos(t_env *g, int nb)
 	g->pile_b = g->info.last_b;
 	pos[2] = check_pile_a_last(g, nb);
 	pos[3] = check_pile_b_last(g, nb);
+//	printf("\nJe m'occupe de : %d\n", nb);
 //	printf("\nPos1 : %d\n", pos[0]);
 //	printf("Pos2 : %d\n", pos[1]);
 //	printf("Pos3 : %d\n", pos[2]);

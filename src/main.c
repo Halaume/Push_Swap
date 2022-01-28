@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/28 13:08:03 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:09:04 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ int	main(int argc, char **argv)
 //	printf("\nbegin b -> %d,last_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb);
 //	printf("begin b prev -> %d,last_b next -> %d\n", g.info.begin_b->prev->nb, g.info.last_b->next->nb);
 	sort(&g);
+	set_min_first(&g);
 //	print_info(g);
 	return (0);
 }

@@ -6,11 +6,16 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:24:34 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/28 13:07:58 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:09:04 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+//void	chose_pos(int *pos)
+//{
+
+//}
 
 int	sort(t_env *g)
 {
@@ -19,9 +24,10 @@ int	sort(t_env *g)
 	int		*pos;
 
 	i = 0;
-	tmp = g->info.begin_b;
 	while (g->info.size_b)
 	{
+		tmp = g->info.begin_b;
+	//	print_pile(*g);
 		pos = check_pos(g, tmp->nb);
 		if (pos[0] == 0 && pos[1] == 0)
 		{
@@ -42,7 +48,6 @@ int	sort(t_env *g)
 			pa(g);
 		}
 		i++;
-		tmp = tmp->next;
 	}
 	free (pos);
 	return (1);
