@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 17:09:22 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:40:16 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	check_pile_a(t_env *g, int nb)
 //		return (0);
 	if (nb > g->info.max_a->nb)
 	{
-		while (g->pile_a != g->info.max_a)
+		while (g->pile_a != g->info.min_a)
 		{
 			g->pile_a = g->pile_a->next;
 			i++;
@@ -115,12 +115,12 @@ int	*check_pos(t_env *g, int nb)
 	g->pile_b = g->info.last_b;
 	pos[2] = check_pile_a_last(g, nb);
 	pos[3] = check_pile_b_last(g, nb);
-//	print_info(*g);
-//	print_pile(*g);
-//	printf("Je m'occupe de : %d\n", nb);
-//	printf("\nPos1 : %d\n", pos[0]);
-//	printf("Pos2 : %d\n", pos[1]);
-//	printf("Pos3 : %d\n", pos[2]);
-//	printf("Pos4 : %d\n\n", pos[3]);
+/*	print_info(*g);
+	print_pile(*g);
+	printf("Je m'occupe de : %d\n", nb);
+	printf("\nPos1 : %d\n", pos[0]);
+	printf("Pos2 : %d\n", pos[1]);
+	printf("Pos3 : %d\n", pos[2]);
+	printf("Pos4 : %d\n\n", pos[3]);*/
 	return (pos);
 }

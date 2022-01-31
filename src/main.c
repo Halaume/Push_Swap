@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 17:09:20 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:40:21 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	print_pile(t_env g)
 
 void	print_info(t_env g)
 {
-	printf("\nbegin a -> %d,last_a -> %d, min_a -> %d\n", g.info.begin_a->nb, g.info.last_a->nb, g.info.min_a->nb);
-	printf("begin a prev -> %d,last_a next -> %d, min_a -> %d\n\n\n", g.info.begin_a->prev->nb, g.info.last_a->next->nb, g.info.min_a->nb);
+	printf("\nbegin a -> %d,last_a -> %d, max_a -> %d\n", g.info.begin_a->nb, g.info.last_a->nb, g.info.max_a->nb);
+	printf("begin a prev -> %d,last_a next -> %d, max_a -> %d\n\n\n", g.info.begin_a->prev->nb, g.info.last_a->next->nb, g.info.max_a->nb);
 	if (g.info.begin_b != NULL)
 	{
 		printf("begin b -> %d,last_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb);

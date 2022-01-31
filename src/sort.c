@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:24:34 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 17:09:21 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:40:20 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	sort(t_env *g)
 	//	i = 0;
 	while (g->info.size_b)
 	{
+		g->info.max_a = get_max_a(g);
 		tmp = g->info.begin_b;
 		//		if (pos)
 		//			free (pos);
