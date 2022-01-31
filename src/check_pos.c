@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 14:01:58 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:09:22 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	check_pile_a(t_env *g, int nb)
 	int		i;
 
 	check = -1;
-	i = 0;
-	if ((nb < g->info.begin_a->nb && nb > g->info.last_a->nb))// || (nb > g->info.begin_a->nb && nb < g->info.last_a->nb))
-		return (0);
+	i = -1;
+//	if ((nb < g->info.begin_a->nb && nb > g->info.last_a->nb))// || (nb > g->info.begin_a->nb && nb < g->info.last_a->nb))
+//		return (0);
 	if (nb > g->info.max_a->nb)
 	{
 		while (g->pile_a != g->info.max_a)
@@ -86,15 +86,17 @@ int	check_pile_a(t_env *g, int nb)
 	}
 	while (g->pile_a->next != g->info.begin_a)
 	{
+	//	printf("pile nb = %d\n", g->pile_a->nb);
 		i++;
-		if (g->pile_a->prev->nb > nb && g->pile_a->nb < nb)
+		if (g->pile_a->nb > nb && g->pile_a->prev->nb < nb)
+		{
+	//	printf("pile ON = %d\n", g->pile_a->nb);
 			check = i;
+		}
 		g->pile_a = g->pile_a->next;
 	}
-	if (g->pile_a->nb > nb && g->pile_a->next->nb < nb)
+	if (g->pile_a->nb > nb && g->pile_a->prev->nb < nb)
 		check = i + 1;
-//	if (check == -1)
-//		g->pile_a = g->info.begin_a;
 	return (check);
 }
 
@@ -113,11 +115,12 @@ int	*check_pos(t_env *g, int nb)
 	g->pile_b = g->info.last_b;
 	pos[2] = check_pile_a_last(g, nb);
 	pos[3] = check_pile_b_last(g, nb);
-	print_pile(*g);
-	printf("Je m'occupe de : %d\n", nb);
-	printf("\nPos1 : %d\n", pos[0]);
-	printf("Pos2 : %d\n", pos[1]);
-	printf("Pos3 : %d\n", pos[2]);
-	printf("Pos4 : %d\n\n", pos[3]);
+//	print_info(*g);
+//	print_pile(*g);
+//	printf("Je m'occupe de : %d\n", nb);
+//	printf("\nPos1 : %d\n", pos[0]);
+//	printf("Pos2 : %d\n", pos[1]);
+//	printf("Pos3 : %d\n", pos[2]);
+//	printf("Pos4 : %d\n\n", pos[3]);
 	return (pos);
 }

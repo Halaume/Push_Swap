@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 14:02:04 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:09:20 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,14 @@ void	check_lis(t_env *g)
 	i = 0;
 	tmp = g->info.begin_a;
 	last = g->info.last_a;
-	while (i != g->info.size_a + g->info.size_b)
+	while (tmp != last)
 	{
 		i++;
 		tmp = g->info.begin_a;
 		if (tmp->is_in_lis < 0)
 			pb(g);
-		else if (tmp->prev->is_in_lis < 0)
-			rra(g);
+//		else if (tmp->prev->is_in_lis < 0)
+//			rra(g);
 		else
 			ra(g);
 	}
