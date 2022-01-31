@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/28 17:09:03 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:01:58 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	big_pos(int pos1, int pos2)
 		return (pos2);
 }
 
-int	*best_pos(int *pos1, int *pos2)
+/*int	*best_pos(int *pos1, int *pos2)
 {
 	if ((pos1[0] >= 0 && pos1[1] >= 0) && (pos2[0] >= 0 && pos2[1] >= 0))
 	{
@@ -40,7 +40,7 @@ int	*best_pos(int *pos1, int *pos2)
 //		if (pos1[0] + pos2[0] > pos2[0] + pos2[1])
 //			return (0);
 	return (NULL);
-}
+}*/
 
 int	check_pile_b(t_env *g, int nb)
 {
@@ -49,6 +49,8 @@ int	check_pile_b(t_env *g, int nb)
 
 	i = 0;
 //	check = 0;
+	if (g->pile_b->next == g->pile_b)
+		return (0);
 	while (g->pile_b != g->info.last_b && nb != g->pile_b->nb)
 	{
 		i++;
@@ -71,11 +73,11 @@ int	check_pile_a(t_env *g, int nb)
 
 	check = -1;
 	i = 0;
-	if ((nb < g->info.begin_a->nb && nb > g->info.last_a->nb) || (nb > g->info.begin_a->nb && nb < g->info.last_a->nb))
+	if ((nb < g->info.begin_a->nb && nb > g->info.last_a->nb))// || (nb > g->info.begin_a->nb && nb < g->info.last_a->nb))
 		return (0);
 	if (nb > g->info.max_a->nb)
 	{
-		while (g->pile_a != g->info.max_a->next)
+		while (g->pile_a != g->info.max_a)
 		{
 			g->pile_a = g->pile_a->next;
 			i++;
@@ -85,11 +87,11 @@ int	check_pile_a(t_env *g, int nb)
 	while (g->pile_a->next != g->info.begin_a)
 	{
 		i++;
-		if (g->pile_a->nb < nb && g->pile_a->next->nb > nb)
-			return (i);
+		if (g->pile_a->prev->nb > nb && g->pile_a->nb < nb)
+			check = i;
 		g->pile_a = g->pile_a->next;
 	}
-	if (g->pile_a->nb < nb && g->pile_a->next->nb > nb)
+	if (g->pile_a->nb > nb && g->pile_a->next->nb < nb)
 		check = i + 1;
 //	if (check == -1)
 //		g->pile_a = g->info.begin_a;
@@ -104,7 +106,6 @@ int	*check_pos(t_env *g, int nb)
 	if (!pos)
 		return (NULL);
 	g->pile_a = g->info.begin_a;
-//	printf("\nbegin b : %d\n", g->info.begin_b->nb);
 	g->pile_b = g->info.begin_b;
 	pos[0] = check_pile_a(g, nb);
 	pos[1] = check_pile_b(g, nb);
@@ -112,10 +113,11 @@ int	*check_pos(t_env *g, int nb)
 	g->pile_b = g->info.last_b;
 	pos[2] = check_pile_a_last(g, nb);
 	pos[3] = check_pile_b_last(g, nb);
-//	printf("\nJe m'occupe de : %d\n", nb);
-//	printf("\nPos1 : %d\n", pos[0]);
-//	printf("Pos2 : %d\n", pos[1]);
-//	printf("Pos3 : %d\n", pos[2]);
-//	printf("Pos4 : %d\n\n", pos[3]);
+	print_pile(*g);
+	printf("Je m'occupe de : %d\n", nb);
+	printf("\nPos1 : %d\n", pos[0]);
+	printf("Pos2 : %d\n", pos[1]);
+	printf("Pos3 : %d\n", pos[2]);
+	printf("Pos4 : %d\n\n", pos[3]);
 	return (pos);
 }

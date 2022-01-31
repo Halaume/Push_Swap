@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/28 17:09:05 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:02:00 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_env {
 
 int				print_err();
 int				pile_len(t_pile *pile);
-int				*check_pos(t_env *g, int nb);
 int				check_pile_a_last(t_env *g, int nb);
 int				check_pile_b_last(t_env *g, int nb);
 void			putstr(char *s);
@@ -57,15 +56,18 @@ t_pile			*ft_lst_delfirst(t_pile *pile);
 t_info			info_init(t_env g);
 char			**lis(int argc, char **argv);
 int				sort(t_env *g);
-int				*best_pos(int *pos1, int *pos2);
 t_pile			*get_min_a(t_env *g);
 t_pile			*get_max_a(t_env *g);
 void			get_lis(t_env *g);
 void			set_min_first(t_env *g);
+int				*check_pos(t_env *g, int nb);
 
 
 void			print_info(t_env g);
 void			print_pile(t_env g);
+
+
+//int				*best_pos(int *pos1, int *pos2);
 
 int				sa(t_env *g);
 int				sb(t_env *g);

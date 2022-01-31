@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:58:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/28 13:07:58 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:02:02 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ int	pa(t_env *g)
 		g->info.begin_a->next = g->info.begin_a;
 		g->info.last_a->prev = g->info.begin_a;
 	}
-	if (g->info.size_b < 1)
+	g->info.size_a++;
+	g->info.size_b--;
+	if (g->info.size_b == 0)
 	{
 		g->info.begin_b = NULL;
 		g->info.last_b = NULL;
 	}
-	g->info.size_a++;
-	g->info.size_b--;
 
 
 /*	if (!(g->pile_b))

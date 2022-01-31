@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/28 17:09:04 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:02:04 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,30 @@ void	print_pile(t_env g)
 		printf("%d\t->\t%d\n", g.info.last_a->nb,g.info.last_a->is_in_lis);
 	printf("\nPILE_B\n");
 	g.pile_b = g.info.begin_b;
+	if (g.pile_b)
+	{
 	while(g.pile_b != g.info.last_b)
 	{
 		printf("%d\t->\t%d\n", g.pile_b->nb,g.pile_b->is_in_lis);
 		g.pile_b = g.pile_b->next;
 	}
 		printf("%d\t->\t%d\n", g.info.last_b->nb,g.info.last_b->is_in_lis);
+	}
+	else
+		printf("EMPTY\n");
 	g.pile_a = g.info.begin_a;
 	g.pile_b = g.info.begin_b;
 }
 
 void	print_info(t_env g)
 {
-	printf("begin a -> %d,last_a -> %d, min_a -> %d\n", g.info.begin_a->nb, g.info.last_a->nb, g.info.min_a->nb);
+	printf("\nbegin a -> %d,last_a -> %d, min_a -> %d\n", g.info.begin_a->nb, g.info.last_a->nb, g.info.min_a->nb);
 	printf("begin a prev -> %d,last_a next -> %d, min_a -> %d\n\n\n", g.info.begin_a->prev->nb, g.info.last_a->next->nb, g.info.min_a->nb);
-//	if (g.info.begin_b != NULL)
-//	printf("begin b -> %d,last_b -> %d, min_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb, g.info.min_b->nb);
+	if (g.info.begin_b != NULL)
+	{
+		printf("begin b -> %d,last_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb);
+		printf("begin b prev -> %d,last_b next -> %d\n", g.info.begin_b->prev->nb, g.info.last_b->next->nb);
+	}
 }
 
 int	ft_strcmp(char *s1, char *s2)
@@ -106,14 +114,17 @@ void	check_lis(t_env *g)
 	int		i;
 
 	tmp = NULL;
-	i = -1;
+	i = 0;
 	tmp = g->info.begin_a;
 	last = g->info.last_a;
-	while (tmp != last)
+	while (i != g->info.size_a + g->info.size_b)
 	{
+		i++;
 		tmp = g->info.begin_a;
 		if (tmp->is_in_lis < 0)
 			pb(g);
+		else if (tmp->prev->is_in_lis < 0)
+			rra(g);
 		else
 			ra(g);
 	}
@@ -177,12 +188,9 @@ int	main(int argc, char **argv)
 //	print_pile(g);
 //	print_info(g);
 	check_lis(&g);
-//	print_pile(g);
-//	print_info(g);
-//	printf("\nbegin b -> %d,last_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb);
-//	printf("begin b prev -> %d,last_b next -> %d\n", g.info.begin_b->prev->nb, g.info.last_b->next->nb);
 	sort(&g);
 	set_min_first(&g);
+//	print_pile(g);
 //	print_info(g);
 	return (0);
 }
