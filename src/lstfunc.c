@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 14:02:02 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/01 17:24:59 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ void	ft_lstadd_back(t_pile **alst, t_pile *new)
 		else
 		{
 			while (tmp->next)
-			{
 				tmp = tmp->next;
-			}
 			tmp->next = new;
 			new->prev = tmp;
 		}

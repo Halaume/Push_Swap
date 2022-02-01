@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:30:08 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 18:40:18 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/01 16:43:05 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_pile_a_last(t_env *g, int nb)
 //		return (0);
 	if (nb > g->info.max_a->nb)
 	{
-		while (g->pile_a != g->info.max_a)
+		while (g->pile_a != g->info.min_a)
 		{
 			g->pile_a = g->pile_a->prev;
 			i++;

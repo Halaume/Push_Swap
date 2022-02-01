@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:24:34 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 18:40:20 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/01 18:35:08 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,25 +92,32 @@ void	chose_pos(int *pos, t_env *g)
 
 int	sort(t_env *g)
 {
-	t_pile	*tmp;
-	//	int		i;
+	t_move	*tmp;
 	int		*pos;
+	int		i;
 
-	//	i = 0;
+	tmp = NULL;
 	while (g->info.size_b)
 	{
+		i = g->info.size_b;
+		while (i)
+		{
+			i--;
+			pos = check_pos(g, g->info.begin_b->nb);
+			move_add_back(&tmp, move_new(pos));
+		}
+		while (tmp)
+		{
+			pos = best_move(tmp->pos, tmp->next->pos);
+			tmp = tmp->next;
+		}
 		g->info.max_a = get_max_a(g);
-		tmp = g->info.begin_b;
-		//		if (pos)
-		//			free (pos);
-		pos = check_pos(g, tmp->nb);
 		if (pos[0] == 0 && pos[1] == 0)
 		{
 			pa(g);
 		}
 		else
 			chose_pos(pos, g);
-		//		i++;
 	}
 	free (pos);
 	return (1);
