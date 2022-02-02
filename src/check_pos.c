@@ -6,49 +6,17 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/02 12:43:59 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/02 14:48:04 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	big_pos(int pos1, int pos2)
-{
-	if (pos1 > pos2)
-		return (pos1);
-	else
-		return (pos2);
-}
-
-/*int	*best_pos(int *pos1, int *pos2)
-{
-	if ((pos1[0] >= 0 && pos1[1] >= 0) && (pos2[0] >= 0 && pos2[1] >= 0))
-	{
-		if (big_pos(pos1[0], pos1[1]) < big_pos(pos2[0], pos2[1]))
-			return (pos1);
-		else
-			return (pos2);
-	}
-	else if ((pos1[0] < 0 && pos1[1] < 0) && (pos2[0] < 0 && pos2[1] < 0))
-	{
-		if (big_pos(pos1[0], pos1[1]) > big_pos(pos2[0], pos2[1]))
-			return (pos1);
-		else
-			return (pos2);
-	}
-//	else
-//		if (pos1[0] + pos2[0] > pos2[0] + pos2[1])
-//			return (0);
-	return (NULL);
-}*/
-
 int	check_pile_b(t_env *g, int nb)
 {
-//	int		check;
 	int		i;
 
 	i = 0;
-//	check = 0;
 	if (g->pile_b->next == g->pile_b)
 		return (0);
 	while (g->pile_b != g->info.last_b && nb != g->pile_b->nb)
@@ -59,11 +27,6 @@ int	check_pile_b(t_env *g, int nb)
 	if (i == pile_len(g->pile_b) && nb != g->pile_b->nb)
 		return (pile_len(g->pile_b) + 1);
 	return (i);
-//	if (i <= pile_len(g->pile_b) / 2)
-//		check = i;
-//	else
-//		check = i - pile_len(g->pile_b);
-//	return (check);
 }
 
 int	check_pile_a(t_env *g, int nb)
@@ -73,8 +36,6 @@ int	check_pile_a(t_env *g, int nb)
 
 	check = -1;
 	i = -1;
-//	if ((nb < g->info.begin_a->nb && nb > g->info.last_a->nb))// || (nb > g->info.begin_a->nb && nb < g->info.last_a->nb))
-//		return (0);
 	if (nb > g->info.max_a->nb)
 	{
 		while (g->pile_a != g->info.min_a)
@@ -86,11 +47,9 @@ int	check_pile_a(t_env *g, int nb)
 	}
 	while (g->pile_a->next != g->info.begin_a)
 	{
-	//	printf("pile nb = %d\n", g->pile_a->nb);
 		i++;
 		if (g->pile_a->nb > nb && g->pile_a->prev->nb < nb)
 		{
-	//	printf("pile ON = %d\n", g->pile_a->nb);
 			check = i;
 		}
 		g->pile_a = g->pile_a->next;
