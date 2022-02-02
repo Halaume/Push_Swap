@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:24:34 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/01 18:35:08 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:43:56 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,23 +95,30 @@ int	sort(t_env *g)
 	t_move	*tmp;
 	int		*pos;
 	int		i;
+	t_pile	*stack;
 
 	tmp = NULL;
 	while (g->info.size_b)
 	{
+		stack = g->info.begin_b;
+		g->info.max_a = get_max_a(g);
+		tmp = free_move(tmp);
 		i = g->info.size_b;
 		while (i)
 		{
 			i--;
-			pos = check_pos(g, g->info.begin_b->nb);
+//			print_pile(*g);
+			pos = check_pos(g, stack->nb);
+//			printf("nb : %d\nint * : \n%d \n%d \n%d \n%d\n", stack->nb, pos[0], pos[1], pos[2], pos[3]);
 			move_add_back(&tmp, move_new(pos));
+			stack = stack->next;
 		}
-		while (tmp)
+		while (tmp->next)
 		{
-			pos = best_move(tmp->pos, tmp->next->pos);
+			pos = best_move(pos, tmp->pos);
 			tmp = tmp->next;
 		}
-		g->info.max_a = get_max_a(g);
+		printf("LETSGOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
 		if (pos[0] == 0 && pos[1] == 0)
 		{
 			pa(g);

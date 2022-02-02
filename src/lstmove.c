@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 17:01:39 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/01 18:35:10 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:43:57 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ void	move_add_front(t_move **alst, t_move *new)
 	}
 }
 
-void	free_move(t_move *move)
+t_move	*free_move(t_move *move)
 {
 	t_move	*tmp;
 
+	if (!move)
+		return (NULL);
 	tmp = move;
 	while (tmp)
 	{
@@ -63,6 +65,7 @@ void	free_move(t_move *move)
 		free(move);
 		move = tmp;
 	}
+	return (NULL);
 }
 
 int	*best_move(int *pos1, int *pos2)
@@ -70,6 +73,22 @@ int	*best_move(int *pos1, int *pos2)
 	int	nb_move1;
 	int	nb_move2;
 
+	if (!pos1)
+		return (pos2);
+	nb_move1 = pos1[0] + pos1[1];
+	nb_move2 = pos2[0] + pos2[1];
+	if (nb_move1 > pos1[2] + pos1[3])
+		nb_move1 = pos1[2] + pos1[3];
+	if (nb_move2 > pos2[2] + pos2[3])
+		nb_move2 = pos2[2] + pos2[3];
+	if (nb_move1 > pos1[0] + pos1[3])
+		nb_move1 = pos1[0] + pos1[3];
+	if (nb_move2 > pos2[0] + pos2[3])
+		nb_move2 = pos2[0] + pos2[3];
+	if (nb_move1 > pos1[1] + pos1[2])
+		nb_move1 = pos1[1] + pos1[2];
+	if (nb_move2 > pos2[1] + pos2[2])
+		nb_move2 = pos2[1] + pos2[2];
 	if (nb_move1 >= nb_move2)
 		return (pos2);
 	else

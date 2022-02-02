@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/01 18:35:10 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:44:00 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				*best_move(int *pos1, int *pos2);
 t_move			*move_new(int *nb);
 void			move_add_back(t_move **move, t_move *new);
 void			move_add_front(t_move **alst, t_move *new);
-void			free_move(t_move *move);
+t_move			*free_move(t_move *move);
 
 
 void			print_info(t_env g);
