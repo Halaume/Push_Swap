@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:30:08 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/03 13:00:28 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:39:13 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_pile_b_last(t_env *g, int nb)
 {
 	int		i;
 
-	i = 0;
+	i = 1;
 	g->pile_b = g->info.last_b;
 	if (g->pile_b->next == g->pile_b)
 		return (0);
@@ -38,14 +38,15 @@ int	check_pile_b_last(t_env *g, int nb)
 
 int	check_pile_a_last(t_env *g, int nb)
 {
-	int		check;
 	int		i;
 
-	check = -1;
 	i = 0;
-	g->pile_a = g->info.last_a;
+	g->pile_a = g->info.begin_a;
 	if (nb > g->info.max_a->nb)
 	{
+//		i++;
+		if (g->info.begin_a == g->info.min_a)
+			return (0);
 		while (g->pile_a != g->info.min_a)
 		{
 			g->pile_a = g->pile_a->prev;
@@ -53,14 +54,18 @@ int	check_pile_a_last(t_env *g, int nb)
 		}
 		return (i);
 	}
-	while (g->pile_a->prev != g->info.last_a)
+	while (g->pile_a != g->info.begin_a->next)
 	{
-		i++;
 		if (g->pile_a->nb > nb && g->pile_a->prev->nb < nb)
-			check = i;
+		{
+			if(g->pile_a == g->info.begin_a)
+				return (0);
+			return (i);
+		}
+		i++;
 		g->pile_a = g->pile_a->prev;
 	}
 	if (g->pile_a->nb > nb && g->pile_a->prev->nb < nb)
-		check = i + 1;
-	return (check);
+		 return (i + 1);
+	return (-1);
 }
