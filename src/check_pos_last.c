@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 10:30:08 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/02 14:48:53 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:00:28 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ int	check_pile_b_last(t_env *g, int nb)
 	int		i;
 
 	i = 0;
+	g->pile_b = g->info.last_b;
 	if (g->pile_b->next == g->pile_b)
 		return (0);
 	if (nb == g->info.last_b->nb)
 		return (1);
 	else if (nb == g->info.begin_b->nb)
 		return (0);
-	while (g->pile_b != g->info.begin_b && nb != g->pile_b->nb)
+	while  (nb != g->pile_b->nb)
+		g->pile_b = g->pile_b->prev;
+	while (g->pile_b != g->info.begin_b)
 	{
 		i++;
 		g->pile_b = g->pile_b->prev;
@@ -40,6 +43,7 @@ int	check_pile_a_last(t_env *g, int nb)
 
 	check = -1;
 	i = 0;
+	g->pile_a = g->info.last_a;
 	if (nb > g->info.max_a->nb)
 	{
 		while (g->pile_a != g->info.min_a)

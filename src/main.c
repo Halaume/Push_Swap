@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 18:40:21 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:00:28 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,12 +134,17 @@ int	main(int argc, char **argv)
 {
 	int		i;
 	int		nb;
-	int		min;
 	t_env	g;
 
+	i = 1;
+	while (argv[i])
+	{
+		if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648)
+			return (print_err());
+		i++;
+	}
 	if (argc <= 2)
 		return (0);
-	min = 2147483647;
 	if (!checkarg(argc, argv))
 		return (print_err());
 	if (is_sort(argc, argv) == 0)
@@ -156,11 +161,7 @@ int	main(int argc, char **argv)
 			{
 				return (print_err());
 			}
-			if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648)
-				return (print_err());
 			nb = (int)ft_atoi(argv[i]);
-			if (nb < min)
-				min = nb;
 			i++;
 			g.info.size_a++;
 			ft_lstadd_back(&g.pile_a, ft_lstnew(nb, 0));
@@ -169,26 +170,23 @@ int	main(int argc, char **argv)
 	}
 	g.info.begin_a = g.pile_a;
 	while (g.pile_a->nb != nb)
-	{
-		if (g.pile_a->nb == min)
-			g.info.min_a = g.pile_a;
 		g.pile_a = g.pile_a->next;
-	}
 	g.info.last_a = g.pile_a;
 	g.info.last_a->next = g.info.begin_a;
 	g.info.begin_a->prev = g.info.last_a;
+	g.info.min_a = get_min_a(&g);
+	g.info.max_a = get_max_a(&g);
 	if (argc == 3)
 	{
 		sa(&g);
 		return (0);
 	}
-	g.info.min_a = get_min_a(&g);
-	g.info.max_a = get_max_a(&g);
 	get_lis(&g);
 //	print_pile(g);
 //	print_info(g);
 	check_lis(&g);
 	sort(&g);
+	g.info.min_a = get_min_a(&g);
 	set_min_first(&g);
 //	print_pile(g);
 //	print_info(g);

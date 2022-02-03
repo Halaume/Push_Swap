@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 17:01:39 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/02 14:39:42 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:00:30 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	*best_move(int *pos1, int *pos2)
 	if (!pos1)
 		return (pos2);
 	nb_move1 = pos1[0] + pos1[1];
-	nb_move2 = pos2[0] + pos2[1];
+	nb_move2 = pos2[2] + pos2[3];
 	if (nb_move1 > pos1[2] + pos1[3])
 		nb_move1 = pos1[2] + pos1[3];
 	if (nb_move2 > pos2[2] + pos2[3])

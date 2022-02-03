@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/02 12:44:00 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:00:29 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,29 @@ typedef struct s_env {
 	t_info	info;
 }	t_env;
 
-int				print_err();
-int				pile_len(t_pile *pile);
-int				check_pile_a_last(t_env *g, int nb);
-int				check_pile_b_last(t_env *g, int nb);
+//		BASIC FUNCTION
+
 void			putstr(char *s);
 int				ft_isdigit(char *c);
 long long		ft_atoi(char *str);
-void			ft_lstadd_front(t_pile **alst, t_pile *new);
-void			ft_lstadd_back(t_pile **alst, t_pile *new);
-void			ft_lstadd_back_circle(t_pile **alst, t_pile *new);
-t_pile			*ft_lstnew(int content, int is_lis);
-t_pile			*ft_lst_delfirst(t_pile *pile);
-t_info			info_init(t_env g);
-char			**lis(int argc, char **argv);
+
+//		SORT
+
 int				sort(t_env *g);
-t_pile			*get_min_a(t_env *g);
-t_pile			*get_max_a(t_env *g);
-void			get_lis(t_env *g);
-void			set_min_first(t_env *g);
 int				*check_pos(t_env *g, int nb);
+void			chose_position(int *pos, t_env *g);
+void			moving_rr(int *pos, t_env *g);
+void			moving_rrr(int *pos, t_env *g);
+void			moving_ra_rrb(int *pos, t_env *g);
+void			moving_rra_rb(int *pos, t_env *g);
 
+//		CHECKING ARG
 
+int				print_err(void);
+int				check_pile_a_last(t_env *g, int nb);
+int				check_pile_b_last(t_env *g, int nb);
+
+//		LST_MOVE
 
 int				*best_move(int *pos1, int *pos2);
 t_move			*move_new(int *nb);
@@ -75,12 +76,27 @@ void			move_add_back(t_move **move, t_move *new);
 void			move_add_front(t_move **alst, t_move *new);
 t_move			*free_move(t_move *move);
 
+//		PRINTING
 
 void			print_info(t_env g);
 void			print_pile(t_env g);
 
+//		LST_PILE / INFO
 
-//int				*best_pos(int *pos1, int *pos2);
+char			**lis(int argc, char **argv);
+int				pile_len(t_pile *pile);
+void			ft_lstadd_front(t_pile **alst, t_pile *new);
+void			ft_lstadd_back(t_pile **alst, t_pile *new);
+void			ft_lstadd_back_circle(t_pile **alst, t_pile *new);
+t_pile			*ft_lstnew(int content, int is_lis);
+t_pile			*ft_lst_delfirst(t_pile *pile);
+t_info			info_init(t_env g);
+t_pile			*get_min_a(t_env *g);
+t_pile			*get_max_a(t_env *g);
+void			get_lis(t_env *g);
+void			set_min_first(t_env *g);
+
+//		OPERATIONS
 
 int				sa(t_env *g);
 int				sb(t_env *g);
