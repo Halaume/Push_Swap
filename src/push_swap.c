@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:59:44 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 14:02:04 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/04 15:23:24 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,41 @@ void	putstr(char *s)
 		write(1, &s[i], 1);
 		i++;
 	}
+}
+
+int	is_sort(int argc, char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (i < argc)
+	{
+		if (argv[i + 1] && ft_atoi(argv[i]) > ft_atoi(argv[i + 1]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	print_err()
+{
+	char	*err = "Error";
+	int		i;
+
+	i = 0;
+	while(err[i])
+		write(2, &err[i++], 1);
+	exit (-1);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
 
 void	set_min_first(t_env *g)
@@ -55,8 +90,4 @@ void	set_min_first(t_env *g)
 			}
 		}
 	}
-}
-int	push_swap()
-{
-	return (0);
 }

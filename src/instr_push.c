@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:58:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/03 13:00:27 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/04 14:29:39 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,32 +87,6 @@ int	pa(t_env *g)
 		g->info.begin_b = NULL;
 		g->info.last_b = NULL;
 	}
-
-
-/*	if (!(g->pile_b))
-		return (-1);
-	g->info.begin_a = g->info.begin_b;
-	if (pile_len(g->info.begin_b) == 1)
-	{
-		g->info.begin_b = NULL;
-		g->info.last_b = NULL;
-	}
-	else
-	{
-		g->info.begin_a->next = g->info.last_a->next;
-		g->info.begin_a->prev = g->info.last_a;
-		g->info.last_a->next = g->info.begin_a;
-		g->info.last_a->prev = g->info.begin_a;
-
-		g->info.last_b = g->info.begin_b;
-		g->info.begin_b->prev = g->info.last_b;
-		g->info.last_b->next = g->info.begin_b;
-		g->info.begin_b = g->info.begin_b->next;
-		g->info.begin_b->prev = g->info.begin_b->prev->prev;
-		g->info.last_b = g->info.begin_b->prev;
-		g->pile_b = ft_lst_delfirst(g->pile_b);
-		g->info.begin_b = g->pile_b;
-	}*/
 	putstr("pa\n");
 	return (0);
 }

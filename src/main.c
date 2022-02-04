@@ -6,13 +6,13 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/03 18:39:12 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/04 15:23:25 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	print_pile(t_env g)
+/*void	print_pile(t_env g)
 {
 	printf("PILE_A\n");
 	g.pile_a = g.info.begin_a;
@@ -48,42 +48,9 @@ void	print_info(t_env g)
 		printf("begin b -> %d,last_b -> %d\n", g.info.begin_b->nb, g.info.last_b->nb);
 		printf("begin b prev -> %d,last_b next -> %d\n", g.info.begin_b->prev->nb, g.info.last_b->next->nb);
 	}
-}
+}*/
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	unsigned int	i;
 
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int	print_err()
-{
-	char	*err = "Error";
-	int		i;
-
-	i = 0;
-	while(err[i])
-		write(2, &err[i++], 1);
-	exit (-1);
-}
-
-int	is_sort(int argc, char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (i < argc)
-	{
-		if (argv[i + 1] && ft_atoi(argv[i]) > ft_atoi(argv[i + 1]))
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 int	checkarg(int argc, char **argv)
 {
@@ -123,8 +90,6 @@ void	check_lis(t_env *g)
 		tmp = g->info.begin_a;
 		if (tmp->is_in_lis < 0)
 			pb(g);
-//		else if (tmp->prev->is_in_lis < 0)
-//			rra(g);
 		else
 			ra(g);
 	}
@@ -182,13 +147,9 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	get_lis(&g);
-//	print_pile(g);
-//	print_info(g);
 	check_lis(&g);
 	sort(&g);
 	g.info.min_a = get_min_a(&g);
 	set_min_first(&g);
-//	print_pile(g);
-//	print_info(g);
 	return (0);
 }

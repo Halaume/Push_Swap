@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:32:07 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/31 14:01:59 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/04 14:46:36 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ long long	ft_atoi(char *str)
 			return (res);
 		res = res * 10 + str[i] - '0';
 		i++;
-		}
+	}
 	return (res * neg);
 }
 
@@ -108,7 +108,7 @@ t_pile	*get_max_a(t_env *g)
 	int		currmax;
 	t_pile	*max;
 
-	max = g->info.begin_a;;
+	max = g->info.begin_a;
 	currmax = -2147483648;
 	g->pile_a = g->info.begin_a;
 	while (g->pile_a != g->info.last_a)
