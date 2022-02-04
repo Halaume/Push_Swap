@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:57:52 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/26 17:19:37 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/04 13:16:38 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,14 @@ int	rrb(t_env *g)
 
 int	rrr(t_env *g)
 {
-	rra(g);
-	rrb(g);
+	if (!g->pile_a)
+		return (-1);
+	if (!g->pile_b)
+		return (-1);
+	g->info.last_a = g->info.last_a->prev;
+	g->info.begin_a = g->info.begin_a->prev;
+	g->info.last_b = g->info.last_b->prev;
+	g->info.begin_b = g->info.begin_b->prev;
 	putstr("rrr\n");
 	return (0);
 }

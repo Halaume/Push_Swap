@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:24:34 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/03 18:39:09 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/04 13:16:39 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ int	sort(t_env *g)
 		lastpos = check_pos(g, stack->nb);
 		pos = check_pos(g, stack->nb);
 		move_add_back(&tmp, move_new(pos));
-		print_pile(*g);
+/*		print_pile(*g);
 		printf("lastnb %d, first nb %d\n", stack->nb, stack->next->nb);
 		printf("-------------------FIRST---------------------\n");
 		printf("Pos1 : %d\n", firstpos[0]);
@@ -224,7 +224,7 @@ int	sort(t_env *g)
 		printf("Pos2 : %d\n", lastpos[1]);
 		printf("Pos3 : %d\n", lastpos[2]);
 		printf("Pos4 : %d\n", lastpos[3]);
-		while (tmp)
+*/		while (tmp)
 		{
 			pos = best_move(pos, tmp->pos);
 			tmp = tmp->next;

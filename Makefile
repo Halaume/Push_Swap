@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 13:44:31 by ghanquer          #+#    #+#              #
-#    Updated: 2022/02/03 18:39:11 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/02/04 11:23:27 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ SRC_FT = 	check_pos\
 			instr_rot\
 			instr_swap\
 			lis\
-			listest\
 			lstfunc\
 			main\
 			push_swap\
