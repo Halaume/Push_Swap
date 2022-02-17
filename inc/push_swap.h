@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 10:14:01 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:37:28 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ typedef struct s_env {
 	t_pile	*pile_b;
 	t_info	info;
 }	t_env;
+//		END FUN
+
+void			fun_free(t_env *g);
+int				print_err(t_env *g);
 
 //		BASIC FUNCTION
 
@@ -58,7 +62,7 @@ int				go_to_min(t_pile *tmp, t_env *g);
 //		SORT
 
 void			sort(t_env *g);
-int				*check_pos(t_env *g, int nb);
+int				*check_pos(t_env *g, int nb, int *pos);
 void			chose_position(int *pos, t_env *g);
 void			moving_rr(int *pos, t_env *g);
 void			moving_rrr(int *pos, t_env *g);
@@ -67,7 +71,6 @@ void			moving_rra_rb(int *pos, t_env *g);
 
 //		CHECKING ARG
 
-int				print_err(void);
 int				check_pile_a_last(t_env *g, int nb);
 int				check_pile_b_last(t_env *g, int nb);
 

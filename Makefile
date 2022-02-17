@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 13:44:31 by ghanquer          #+#    #+#              #
-#    Updated: 2022/02/17 11:21:19 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/02/17 12:11:58 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,14 @@ OBJ =			$(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 OBJ_DIRS =		$(OBJ_DIR)
 
-CC = clang
+CC = clang $(CFLAGS)
 
 RM = rm -fr
 
 CFLAGS = -Wall -Wextra -Werror
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	$(CC) -c $< -o $(<:.c=.o)
 
 #HOW TO LIST .c 
 #	ls -l | awk '{print $9}' | grep -E ".c$"| sed "s/\.c/ \\\/g" | sed '$s/\\$//g'
@@ -48,6 +48,7 @@ SRC_FT = 	check_pos\
 			lstmove\
 			positioning\
 			sort_utils\
+			push_swap_free\
 			sort
 
 all: $(NAME)

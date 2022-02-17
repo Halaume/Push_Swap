@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 11:09:24 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 17:04:59 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,8 @@ int	check_pile_a(t_env *g, int nb)
 	return (check_pile_a_2(g, nb, i));
 }
 
-int	*check_pos(t_env *g, int nb)
+int	*check_pos(t_env *g, int nb, int *pos)
 {
-	int	*pos;
-
 	pos = malloc(sizeof(int) * 4);
 	if (!pos)
 		return (NULL);

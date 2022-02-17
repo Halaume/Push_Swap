@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 10:38:19 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 17:57:35 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	checkarg(int argc, char **argv)
 	return (1);
 }
 
-void	check_error(int argc, char **argv)
+void	check_error(int argc, char **argv, t_env *g)
 {
 	int	i;
 
@@ -42,13 +42,13 @@ void	check_error(int argc, char **argv)
 	while (argv[i])
 	{
 		if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648)
-			print_err();
+			print_err(g);
 		i++;
 	}
 	if (argc <= 2)
 		exit(0);
 	if (!checkarg(argc, argv))
-		print_err();
+		print_err(g);
 	if (is_sort(argc, argv) == 0)
 		exit(0);
 }
@@ -74,9 +74,10 @@ void	check_lis(t_env *g)
 	}
 }
 
-void	fill_pile(int argc, char **argv, t_env *g, int nb)
+void	fill_pile(int argc, char **argv, t_env *g)
 {
 	int	i;
+	int	nb;
 
 	i = 1;
 	while (i < argc)
@@ -84,7 +85,7 @@ void	fill_pile(int argc, char **argv, t_env *g, int nb)
 		while (argv[i])
 		{
 			if (!ft_isdigit(argv[i]))
-				print_err();
+				print_err(g);
 			nb = (int)ft_atoi(argv[i]);
 			i++;
 			g->info.size_a++;
@@ -104,17 +105,18 @@ void	fill_pile(int argc, char **argv, t_env *g, int nb)
 
 int	main(int argc, char **argv)
 {
-	int		nb;
 	t_env	g;
 
-	check_error(argc, argv);
+	check_error(argc, argv, &g);
 	g.pile_a = NULL;
 	g.pile_b = NULL;
 	g.info = info_init(g);
-	fill_pile(argc, argv, &g, nb);
+	fill_pile(argc, argv, &g);
 	if (argc == 3)
 	{
-		sa(&g);
+		ra(&g);
+		free(g.pile_a->next);
+		free(g.pile_a);
 		return (0);
 	}
 	get_lis(&g);
@@ -122,5 +124,6 @@ int	main(int argc, char **argv)
 	sort(&g);
 	g.info.min_a = get_min_a(&g);
 	set_min_first(&g);
+	fun_free(&g);
 	return (0);
 }

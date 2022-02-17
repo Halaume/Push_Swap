@@ -6,13 +6,13 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:58:22 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 10:38:28 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 12:31:10 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	positioning(int *pos, t_env *g)
+int	positioning(int *pos)
 {
 	int	best_move;
 	int	nb_move;
@@ -41,7 +41,7 @@ void	chose_position(int *pos, t_env *g)
 {
 	int	i;
 
-	i = positioning(pos, g);
+	i = positioning(pos);
 	if (i == 0)
 		moving_rr(pos, g);
 	else if (i == 1)

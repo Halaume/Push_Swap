@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:59:44 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 11:27:37 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 12:10:28 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	is_sort(int argc, char **argv)
 	return (0);
 }
 
-int	print_err(void)
+int	print_err(t_env *g)
 {
 	char	*err;
 	int		i;
@@ -47,6 +47,7 @@ int	print_err(void)
 	i = 0;
 	while (err[i])
 		write(2, &err[i++], 1);
+	fun_free(g);
 	exit (-1);
 }
 
