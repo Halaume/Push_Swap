@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 13:44:31 by ghanquer          #+#    #+#              #
-#    Updated: 2022/02/04 15:23:30 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/02/17 11:21:19 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC_FT = 	check_pos\
 			push_swap_utils\
 			lstmove\
 			positioning\
+			sort_utils\
 			sort
 
 all: $(NAME)

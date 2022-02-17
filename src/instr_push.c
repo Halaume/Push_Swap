@@ -6,27 +6,14 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:58:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/04 14:29:39 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 10:43:43 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	pb(t_env *g)
+void	pb2(t_env *g, t_pile *tmp, t_pile *swap)
 {
-	t_pile	*tmp;
-	t_pile	*swap;
-
-	tmp = g->info.begin_b;
-	swap = g->info.begin_a;
-	if (!(g->pile_a))
-		return (-1);
-	g->info.begin_b = g->info.begin_a;
-	g->info.begin_a = g->info.begin_a->next;
-	g->info.begin_a->prev = g->info.last_a;
-	g->info.last_a->next = g->info.begin_a;
-	g->info.min_a = get_min_a(g);
-	g->info.max_a = get_max_a(g);
 	if (tmp)
 	{
 		tmp->prev = swap;
@@ -44,25 +31,32 @@ int	pb(t_env *g)
 		g->info.begin_b->next = g->info.begin_b;
 		g->info.last_b->prev = g->info.begin_b;
 	}
+}
+
+int	pb(t_env *g)
+{
+	t_pile	*tmp;
+	t_pile	*swap;
+
+	tmp = g->info.begin_b;
+	swap = g->info.begin_a;
+	if (!(g->pile_a))
+		return (-1);
+	g->info.begin_b = g->info.begin_a;
+	g->info.begin_a = g->info.begin_a->next;
+	g->info.begin_a->prev = g->info.last_a;
+	g->info.last_a->next = g->info.begin_a;
+	g->info.min_a = get_min_a(g);
+	g->info.max_a = get_max_a(g);
+	pb2(g, tmp, swap);
 	g->info.size_a--;
 	g->info.size_b++;
 	putstr("pb\n");
 	return (0);
 }
 
-int	pa(t_env *g)
+void	pa2(t_env *g, t_pile *tmp, t_pile *swap)
 {
-	t_pile	*tmp;
-	t_pile	*swap;
-
-	tmp = g->info.begin_a;
-	swap = g->info.begin_b;
-	if (!(g->pile_a))
-		return (-1);
-	g->info.begin_a = g->info.begin_b;
-	g->info.begin_b = g->info.begin_b->next;
-	g->info.begin_b->prev = g->info.last_b;
-	g->info.last_b->next = g->info.begin_b;
 	if (tmp)
 	{
 		tmp->prev = swap;
@@ -80,6 +74,22 @@ int	pa(t_env *g)
 		g->info.begin_a->next = g->info.begin_a;
 		g->info.last_a->prev = g->info.begin_a;
 	}
+}
+
+int	pa(t_env *g)
+{
+	t_pile	*tmp;
+	t_pile	*swap;
+
+	tmp = g->info.begin_a;
+	swap = g->info.begin_b;
+	if (!(g->pile_a))
+		return (-1);
+	g->info.begin_a = g->info.begin_b;
+	g->info.begin_b = g->info.begin_b->next;
+	g->info.begin_b->prev = g->info.last_b;
+	g->info.last_b->next = g->info.begin_b;
+	pa2(g, tmp, swap);
 	g->info.size_a++;
 	g->info.size_b--;
 	if (g->info.size_b == 0)

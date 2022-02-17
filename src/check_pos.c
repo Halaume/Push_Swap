@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:12:28 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/04 13:16:37 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 11:09:24 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,24 @@ int	check_pile_b(t_env *g, int nb)
 	return (i);
 }
 
+int	check_pile_a_2(t_env *g, int nb, int i)
+{
+	while (g->pile_a->next != g->info.begin_a)
+	{
+		i++;
+		if (g->pile_a->nb > nb && g->pile_a->prev->nb < nb)
+		{
+			if (g->pile_a == g->info.begin_a)
+				return (0);
+			return (i);
+		}
+		g->pile_a = g->pile_a->next;
+	}
+	if (g->pile_a->nb > nb && g->pile_a->prev->nb < nb)
+		return (i + 1);
+	return (-1);
+}
+
 int	check_pile_a(t_env *g, int nb)
 {
 	int		i;
@@ -48,20 +66,7 @@ int	check_pile_a(t_env *g, int nb)
 		}
 		return (i);
 	}
-	while (g->pile_a->next != g->info.begin_a)
-	{
-		i++;
-		if (g->pile_a->nb > nb && g->pile_a->prev->nb < nb)
-		{
-			if(g->pile_a == g->info.begin_a)
-				return (0);
-			return (i);
-		}
-		g->pile_a = g->pile_a->next;
-	}
-	if (g->pile_a->nb > nb && g->pile_a->prev->nb < nb)
-		return (i + 1);
-	return (-1);
+	return (check_pile_a_2(g, nb, i));
 }
 
 int	*check_pos(t_env *g, int nb)
@@ -75,12 +80,5 @@ int	*check_pos(t_env *g, int nb)
 	pos[1] = check_pile_b(g, nb);
 	pos[2] = check_pile_a_last(g, nb);
 	pos[3] = check_pile_b_last(g, nb);
-/*	print_info(*g);
-	print_pile(*g);
-	printf("Je m'occupe de : %d\n", nb);
-	printf("\nPos1 : %d\n", pos[0]);
-	printf("Pos2 : %d\n", pos[1]);
-	printf("Pos3 : %d\n", pos[2]);
-	printf("Pos4 : %d\n\n", pos[3]);*/
 	return (pos);
 }

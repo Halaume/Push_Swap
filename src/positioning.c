@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:58:22 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/04 13:16:39 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 10:38:28 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	positioning(int *pos, t_env *g)
 {
-	int best_move;
+	int	best_move;
 	int	nb_move;
 
 	best_move = 0;
@@ -50,4 +50,17 @@ void	chose_position(int *pos, t_env *g)
 		moving_ra_rrb(pos, g);
 	else
 		moving_rra_rb(pos, g);
+}
+
+int	go_to_min(t_pile *tmp, t_env *g)
+{
+	int	i;
+
+	i = 0;
+	while (tmp != g->info.min_a)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
 }

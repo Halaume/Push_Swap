@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:59:56 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/03 13:00:27 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 11:13:23 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,4 @@ void	ft_lstadd_front(t_pile **alst, t_pile *new)
 		*alst = new;
 		new->next->prev = new;
 	}
-}
-
-t_pile	*ft_lst_delfirst(t_pile *pile)
-{
-	t_pile	*tmp;
-
-	tmp = NULL;
-	if (pile->next)
-		tmp = pile->next;
-	free(pile);
-	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:21:14 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/01/28 13:08:04 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 11:01:12 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ void	rem_double(t_env *g)
 		current = g->info.min_a;
 		while (current != g->info.min_a->prev)
 		{
-			if (current != tmp && current->is_in_lis != -1 && current->is_in_lis == tmp->is_in_lis)
+			if (current != tmp && current->is_in_lis != -1
+				&& current->is_in_lis == tmp->is_in_lis)
 				current->is_in_lis = -1;
 			current = current->next;
 		}
-		if (current != tmp && current->is_in_lis != -1 && current->is_in_lis == tmp->is_in_lis)
+		if (current != tmp && current->is_in_lis != -1
+			&& current->is_in_lis == tmp->is_in_lis)
 			current->is_in_lis = -1;
 		tmp = tmp->next;
 	}
@@ -38,8 +40,8 @@ void	rem_double(t_env *g)
 
 void	get_move(t_env *g)
 {
-	t_pile *current;
-	t_pile *tmp;
+	t_pile	*current;
+	t_pile	*tmp;
 
 	tmp = g->info.min_a;
 	current = tmp->next;
@@ -47,7 +49,8 @@ void	get_move(t_env *g)
 	{
 		if (current->is_in_lis == tmp->is_in_lis - 1 && current->nb > tmp->nb)
 			tmp = current;
-		else if (current->is_in_lis <= tmp->is_in_lis && current->is_in_lis != -1)
+		else if (current->is_in_lis <= tmp->is_in_lis
+			&& current->is_in_lis != -1)
 			current->is_in_lis = -1;
 		current = current->next;
 	}
@@ -56,8 +59,8 @@ void	get_move(t_env *g)
 
 void	get_lis(t_env *g)
 {
-	t_pile *current;
-	t_pile *tmp;
+	t_pile	*current;
+	t_pile	*tmp;
 
 	current = g->info.min_a->prev;
 	current->is_in_lis = 1;
@@ -68,7 +71,8 @@ void	get_lis(t_env *g)
 		tmp = current->next;
 		while (tmp != g->info.min_a)
 		{
-			if (current->nb < tmp->nb && current->is_in_lis < tmp->is_in_lis + 1)
+			if (current->nb < tmp->nb
+				&& current->is_in_lis < tmp->is_in_lis + 1)
 				current->is_in_lis = tmp->is_in_lis + 1;
 			tmp = tmp->next;
 		}

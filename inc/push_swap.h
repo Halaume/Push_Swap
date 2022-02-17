@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/04 15:23:27 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 10:14:01 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int				is_sort(int argc, char **argv);
 int				ft_strcmp(char *s1, char *s2);
 int				ft_isdigit(char *c);
 long long		ft_atoi(char *str);
+int				go_to_min(t_pile *tmp, t_env *g);
 
 //		SORT
 

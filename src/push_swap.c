@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:59:44 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/04 15:23:24 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 11:27:37 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,14 @@ int	is_sort(int argc, char **argv)
 	return (0);
 }
 
-int	print_err()
+int	print_err(void)
 {
-	char	*err = "Error";
+	char	*err;
 	int		i;
 
+	err = "Error";
 	i = 0;
-	while(err[i])
+	while (err[i])
 		write(2, &err[i++], 1);
 	exit (-1);
 }
@@ -64,15 +65,10 @@ void	set_min_first(t_env *g)
 	int		i;
 	t_pile	*tmp;
 
-	i = 0;
 	tmp = g->info.begin_a;
 	if (g->info.min_a != g->info.begin_a)
 	{
-		while (tmp != g->info.min_a)
-		{
-			tmp = tmp->next;
-			i++;
-		}
+		i = go_to_min(tmp, g);
 		if (i < g->info.size_a / 2)
 		{
 			while (g->info.min_a != g->info.begin_a)
