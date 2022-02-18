@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/18 12:09:11 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/18 17:41:01 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int				go_to_min(t_pile *tmp, t_env *g);
 //		SORT
 
 void			sort(t_env *g);
+int				case_three(t_env *g);
 int				*check_pos(t_env *g, int nb, int *pos);
 void			chose_position(int *pos, t_env *g);
 void			moving_rr(int *pos, t_env *g);
@@ -82,11 +83,6 @@ t_move			*move_new(int *nb);
 void			move_add_back(t_move **move, t_move *new);
 void			move_add_front(t_move **alst, t_move *new);
 t_move			*free_move(t_move *move);
-
-//		PRINTING
-
-void			print_info(t_env g);
-void			print_pile(t_env g);
 
 //		LST_PILE / INFO
 

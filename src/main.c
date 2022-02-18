@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 19:10:54 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/18 17:44:04 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	check_lis(t_env *g)
 	i = 0;
 	tmp = g->info.begin_a;
 	last = g->info.last_a;
-	while (tmp != last)
+	while (tmp != last && g->info.size_a != 3)
 	{
 		i++;
 		tmp = g->info.begin_a;
@@ -72,6 +72,8 @@ void	check_lis(t_env *g)
 		else
 			ra(g);
 	}
+	if (g->info.size_a == 3 && case_three(g) == 1)
+		return ;
 }
 
 void	fill_pile(int argc, char **argv, t_env *g)
@@ -119,6 +121,7 @@ int	main(int argc, char **argv)
 		free(g.pile_a);
 		return (0);
 	}
+	case_three(&g);
 	get_lis(&g);
 	check_lis(&g);
 	sort(&g);

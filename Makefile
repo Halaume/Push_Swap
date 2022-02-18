@@ -6,7 +6,7 @@
 #    By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 13:44:31 by ghanquer          #+#    #+#              #
-#    Updated: 2022/02/17 12:11:58 by ghanquer         ###   ########.fr        #
+#    Updated: 2022/02/18 15:35:34 by ghanquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC_FT = 	check_pos\
 			positioning\
 			sort_utils\
 			push_swap_free\
+			case_three\
 			sort
 
 all: $(NAME)

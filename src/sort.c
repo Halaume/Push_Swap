@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:24:34 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/18 12:44:58 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/18 14:13:57 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	sorting(t_env *g, t_move *tmp, t_pile *stack, int *pos)
 		pos = check_pos(g, stack->nb, pos);
 		move_add_back(&tmp, move_new(pos));
 		begin = tmp;
-		pos = check_pos(g, stack->nb, pos);
-		move_add_back(&tmp, move_new(pos));
 		while (tmp)
 		{
 			if (best_move(pos, tmp->pos) == tmp->pos)
@@ -67,7 +65,6 @@ void	sorting(t_env *g, t_move *tmp, t_pile *stack, int *pos)
 			tmp = tmp->next;
 		}
 		chose_position(pos, g);
-		pa(g);
 		tmp = free_move(begin);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:58:22 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 19:10:19 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/18 17:42:58 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	chose_position(int *pos, t_env *g)
 		moving_ra_rrb(pos, g);
 	else
 		moving_rra_rb(pos, g);
+	pa(g);
 }
 
 int	go_to_min(t_pile *tmp, t_env *g)

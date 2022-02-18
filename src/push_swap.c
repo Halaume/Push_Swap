@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:59:44 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 12:10:28 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:42:21 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	set_min_first(t_env *g)
 	if (g->info.min_a != g->info.begin_a)
 	{
 		i = go_to_min(tmp, g);
-		if (i < g->info.size_a / 2)
+		if (i < g->info.size_a / 2 + 1)
 		{
 			while (g->info.min_a != g->info.begin_a)
 			{
