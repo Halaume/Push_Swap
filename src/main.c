@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:52:38 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 17:57:35 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 19:10:54 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	checkarg(int argc, char **argv)
 	return (1);
 }
 
-void	check_error(int argc, char **argv, t_env *g)
+void	check_error(int argc, char **argv)
 {
 	int	i;
 
@@ -42,13 +42,13 @@ void	check_error(int argc, char **argv, t_env *g)
 	while (argv[i])
 	{
 		if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483648)
-			print_err(g);
+			print_err_nofree();
 		i++;
 	}
 	if (argc <= 2)
 		exit(0);
 	if (!checkarg(argc, argv))
-		print_err(g);
+		print_err_nofree();
 	if (is_sort(argc, argv) == 0)
 		exit(0);
 }
@@ -107,7 +107,7 @@ int	main(int argc, char **argv)
 {
 	t_env	g;
 
-	check_error(argc, argv, &g);
+	check_error(argc, argv);
 	g.pile_a = NULL;
 	g.pile_b = NULL;
 	g.info = info_init(g);

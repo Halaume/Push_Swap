@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:00:16 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 14:37:28 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:09:11 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_env {
 //		END FUN
 
 void			fun_free(t_env *g);
+int				print_err_nofree(void);
 int				print_err(t_env *g);
 
 //		BASIC FUNCTION

@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:26:23 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 18:23:25 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:48:35 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,14 @@ void	free_pile_a(t_env *g)
 	t_pile	*tmp;
 	t_pile	*tmp2;
 
-	tmp2 = g->info.begin_a;
-	tmp = tmp2->next;
-	tmp2 = NULL;
-	g->info.last_a = NULL;
+	tmp = g->info.begin_a;
+	tmp->prev->next = NULL;
 	while (tmp != NULL)
 	{
-		tmp2 = tmp;
-		tmp = tmp->next;
-		tmp2 = NULL;
-		free(tmp2);
+		tmp2 = tmp->next;
+		free(tmp);
+		tmp = tmp2;
 	}
-	free(tmp);
 }
 
 void	free_pile_b(t_env *g)

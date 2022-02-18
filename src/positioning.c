@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:58:22 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 12:31:10 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/17 19:10:19 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,16 @@ int	go_to_min(t_pile *tmp, t_env *g)
 		i++;
 	}
 	return (i);
+}
+
+int	print_err_nofree(void)
+{
+	char	*err;
+	int		i;
+
+	err = "Error";
+	i = 0;
+	while (err[i])
+		write(2, &err[i++], 1);
+	exit (-1);
 }

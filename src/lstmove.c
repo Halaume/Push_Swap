@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 17:01:39 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 17:10:12 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:39:01 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,9 @@ t_move	*free_move(t_move *move)
 {
 	t_move	*tmp;
 
-	if (!move)
-		return (NULL);
-	tmp = move;
-	while (tmp)
+	while (move)
 	{
-		tmp = tmp->next;
+		tmp = move->next;
 		free(move->pos);
 		free(move);
 		move = tmp;

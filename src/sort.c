@@ -6,7 +6,7 @@
 /*   By: ghanquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:24:34 by ghanquer          #+#    #+#             */
-/*   Updated: 2022/02/17 18:13:17 by ghanquer         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:44:58 by ghanquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,13 @@ void	moving_rra_rb(int *pos, t_env *g)
 
 void	sorting(t_env *g, t_move *tmp, t_pile *stack, int *pos)
 {
-	int		*tofree;
-//	t_move	*tofree2;
+	t_move	*begin;
 
 	while (g->info.size_b)
 	{
 		stack = g->info.begin_b;
 		g->info.max_a = get_max_a(g);
 		g->info.min_a = get_min_a(g);
-		tmp = free_move(tmp);
 		while (stack->next != g->info.begin_b)
 		{
 			pos = check_pos(g, stack->nb, pos);
@@ -59,23 +57,18 @@ void	sorting(t_env *g, t_move *tmp, t_pile *stack, int *pos)
 		}
 		pos = check_pos(g, stack->nb, pos);
 		move_add_back(&tmp, move_new(pos));
+		begin = tmp;
+		pos = check_pos(g, stack->nb, pos);
+		move_add_back(&tmp, move_new(pos));
 		while (tmp)
 		{
 			if (best_move(pos, tmp->pos) == tmp->pos)
-			{
-				tofree = pos;
-				pos = best_move(pos, tmp->pos);
-				if (tofree)
-				{
-					tofree = NULL;
-					free(tofree);
-				}
-			}
+				pos = tmp->pos;
 			tmp = tmp->next;
 		}
 		chose_position(pos, g);
-		free_move(tmp);
 		pa(g);
+		tmp = free_move(begin);
 	}
 }
 
