@@ -46,7 +46,7 @@ int	print_err(t_env *g)
 	err = "Error";
 	i = 0;
 	while (err[i])
-		write(2, &err[i++], 1);
+		write(2, &err[i++], 2);
 	fun_free(g);
 	exit (-1);
 }
