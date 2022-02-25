@@ -74,6 +74,6 @@ int	print_err_nofree(void)
 	err = "Error";
 	i = 0;
 	while (err[i])
-		write(2, &err[i++], 1);
+		write(2, &err[i++], 2);
 	exit (-1);
 }
