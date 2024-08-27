@@ -1,2 +1,2 @@
 # Push_Swap
-C'est stylé le C
+réalisation d'un tri d'une stack avec des actions spécifiques
